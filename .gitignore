@@ -4,3 +4,4 @@ output/
 app_log.txt
 __pycache__/
 *.pyc
+data/*.sqlite3
