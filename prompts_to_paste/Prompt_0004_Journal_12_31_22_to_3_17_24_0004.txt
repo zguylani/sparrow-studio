@@ -1,0 +1,105 @@
+You are helping create Zuba's hierarchical journal publishing system.
+
+CRITICAL RULES:
+- Review every sentence in the supplied chunk.
+- Preserve wording as close to verbatim as possible.
+- Correct only spelling, punctuation, grammar, and obvious autofill/autocorrect/dictation/AI input errors.
+- Do not polish, summarize, theologize, censor, or rewrite the author's voice.
+- Extract complete thoughts at every natural level. A complete thought may be a whole journal entry, an essay/reflection, a paragraph, or one sentence.
+- Preserve hierarchy ALWAYS, not optionally.
+- Create a Journal entry item for each dated journal entry that contains usable intellectual, spiritual, narrative, or publication material.
+- If a journal entry contains a sustained reflection or essay, create an Essay item under the Journal entry.
+- Create Paragraph items for reusable paragraphs under the Essay or Journal entry.
+- Create One-liner, Principle/framework, Story/illustration, Definition, Analogy, Question, Book idea, Sermon idea, Research idea, and Personal testimony items under their most specific parent.
+- If a paragraph has several usable sentences, extract the paragraph AND the usable sentences inside it.
+- Exclude mundane logistical entries unless they contain a usable phrase, story, insight, principle, image, or book material.
+- Return ONLY valid JSON. No markdown. No explanation.
+
+RETURN FORMAT:
+Return a JSON array of objects. Every object must use exactly these keys:
+item_id, parent_id, chunk_id, source_date, source_heading, level, category, rating, themes, keywords, corrected_text, notes, possible_book, journal_entry_id, essay_id, paragraph_id, sequence
+
+FIELD RULES:
+- item_id: Use the exact ID prefixes below with sequential numbering inside this chunk.
+  Journal entry: Journal_12_31_22_to_3_17_24_0004-JE001
+  Essay: Journal_12_31_22_to_3_17_24_0004-E001
+  Paragraph: Journal_12_31_22_to_3_17_24_0004-P001
+  One-liner/quote: Journal_12_31_22_to_3_17_24_0004-Q001
+  Principle/framework: Journal_12_31_22_to_3_17_24_0004-PR001
+  Story/illustration: Journal_12_31_22_to_3_17_24_0004-S001
+  Definition: Journal_12_31_22_to_3_17_24_0004-D001
+  Book idea: Journal_12_31_22_to_3_17_24_0004-B001
+  Analogy: Journal_12_31_22_to_3_17_24_0004-A001
+  Sermon idea: Journal_12_31_22_to_3_17_24_0004-N001
+  Research idea: Journal_12_31_22_to_3_17_24_0004-R001
+  Question: Journal_12_31_22_to_3_17_24_0004-X001
+  Personal testimony: Journal_12_31_22_to_3_17_24_0004-T001
+- parent_id: blank if no parent. Otherwise use the item_id of the parent item.
+- chunk_id: always Journal_12_31_22_to_3_17_24_0004
+- source_date: date of the journal entry if present.
+- source_heading: heading if present.
+- level: one of Journal entry, Essay, Paragraph, One-liner, Principle/framework, Story/illustration, Definition, Book idea, Analogy, Sermon idea, Research idea, Question, Personal testimony.
+- category: one or more of Publishable quote, Book idea, Principle/framework, Story/illustration, Definition, Sermon idea, Analogy, Question, Personal testimony, Research idea, Essay/reflection, Paragraph.
+- rating: 1-10 for usefulness/publication potential.
+- themes: semicolon-separated themes.
+- keywords: semicolon-separated keywords.
+- corrected_text: the extracted text, lightly corrected only by the rules above.
+- notes: brief note about context, parent/child relationship, uncertainty, or why included.
+- possible_book: possible book/project fit, such as Belovedness, Grace, Wisdom of Sparrow, Leadership, Trauma Healing, Sustainability, Sermons, Articles, Unknown.
+- journal_entry_id: item_id of the parent Journal entry if applicable.
+- essay_id: item_id of the parent Essay if applicable.
+- paragraph_id: item_id of the parent Paragraph if applicable.
+- sequence: integer sequence number preserving the order in the chunk.
+
+HIERARCHY REQUIREMENTS:
+For a dated entry with heading and multiple paragraphs, create:
+1. Journal entry item for the whole dated entry.
+2. Essay item if it contains a sustained reflection.
+3. Paragraph items for reusable paragraphs.
+4. One-liners/principles/questions/etc. inside the paragraphs.
+
+Do NOT choose only the best level. Extract all usable levels.
+
+CHUNK_ID: Journal_12_31_22_to_3_17_24_0004
+
+JOURNAL CHUNK:
+Date:	March 17, 2024 at 6:48:53 AM CDT
+	Weather:	30°F Mostly Clear
+	Location:	1435 Robinwood Dr, Aurora, Illinois, United States
+
+Reimagining heaven and hell
+
+Heaven and hell begin on earth, begin at our birth
+Eternal heaven and hell are a continuation of what they are on earth
+
+I hate the  idea of hell but try as I might I have not been able to interpret it out of the Bible.  Jesus makes it very clear that hell is a reality.  Therefore I choose to align myself with scripture instead of placing myself over it, and accepting the reality of hell.  But I want to know as much as I can about heaven and hell to best inform my decisions and to accurately share the gospel with the world.
+
+We must always consider heaven and hell together, because they represent the perennial choice god gives us to walk in light or walk in darkness, to grow in love or to descend into hatred.  This is a daily and even minute by minute sober decision for those walking into heaven but it is also a great responsibility to let others know about the gravity of these decisions and their ultimate consequences.
+Hell is an evidence of God’s love.  God does not force us to love him but allows us free will.  If we reject his authority in our lives, would prefer to be the captain of our own lives, would choose to live apart from God; then we will receive our desire.  Unfortunately what so many who choose to be separated from God don’t realize is that everything good in their life, in the world and in the universe is an emanation from the creativity, source energy and love of God.  Apart from him,  we will no longer experience the warmth of sunlight on our backs, the laughter of children,  the delight of good food,  the ecstasy of sexuality and the joy of friendship.  Hell is a vacuum of all those things.  The gifts cannot be separated from the giver.
+To the extent that you are experiencing goodness in this life, you are experiencing the goodness of eternal life in the presence of God.  To the extent that you are experiencing frustration, despair, loneliness and self hatred, you are experiencing a foretaste of hell.  The Bible calls this dichotomy life versus death.  God is the author of life and satan is the author of death.
+God’s righteous anger and his holy judgments and his blessing and loving kindness are the natural consequences of our behavior.   If we give little we receive little.  If we give much, we receive much.  If we try to take advantage of other people, we will sow mistrust.  If we serve people, we will reap trust and affection.
+
+To the church in Smyrna
+”Whoever has ears, let them hear what the Spirit says to the churches. The one who is victorious will not be hurt at all by the second death.“
+Revelation 2:11 NIV
+https://bible.com/bible/111/rev.2.11.NIV
+
+”Blessed and holy are those who share in the first resurrection. The second death has no power over them, but they will be priests of God and of Christ and will reign with him for a thousand years.“
+Revelation 20:6 NIV
+https://bible.com/bible/111/rev.20.6.NIV
+
+”Then death and Hades were thrown into the lake of fire. The lake of fire is the second death. Anyone whose name was not found written in the book of life was thrown into the lake of fire.“
+Revelation 20:14-15 NIV
+https://bible.com/bible/111/rev.20.14-15.NIV
+
+”“He will reply, ‘Truly I tell you, whatever you did not do for one of the least of these, you did not do for me.’ “Then they will go away to eternal punishment, but the righteous to eternal life.”“
+Matthew 25:45-46 NIV
+https://bible.com/bible/111/mat.25.45-46.NIV
+
+”But the cowardly, the unbelieving, the vile, the murderers, the sexually immoral, those who practice magic arts, the idolaters and all liars—they will be consigned to the fiery lake of burning sulfur. This is the second death.”“
+Revelation 21:8 NIV
+https://bible.com/bible/111/rev.21.8.NIV
+
+”Do not be afraid of those who kill the body but cannot kill the soul. Rather, be afraid of the One who can destroy both soul and body in hell.“
+Matthew 10:28 NIV
+https://bible.com/bible/111/mat.10.28.NIV

@@ -1,0 +1,1109 @@
+You are helping create Zuba's hierarchical journal publishing system.
+
+CRITICAL RULES:
+- Review every sentence in the supplied chunk.
+- Preserve wording as close to verbatim as possible.
+- Correct only spelling, punctuation, grammar, and obvious autofill/autocorrect/dictation/AI input errors.
+- Do not polish, summarize, theologize, censor, or rewrite the author's voice.
+- Extract complete thoughts at every natural level. A complete thought may be a whole journal entry, an essay/reflection, a paragraph, or one sentence.
+- Preserve hierarchy ALWAYS, not optionally.
+- Create a Journal entry item for each dated journal entry that contains usable intellectual, spiritual, narrative, or publication material.
+- If a journal entry contains a sustained reflection or essay, create an Essay item under the Journal entry.
+- Create Paragraph items for reusable paragraphs under the Essay or Journal entry.
+- Create One-liner, Principle/framework, Story/illustration, Definition, Analogy, Question, Book idea, Sermon idea, Research idea, and Personal testimony items under their most specific parent.
+- If a paragraph has several usable sentences, extract the paragraph AND the usable sentences inside it.
+- Exclude mundane logistical entries unless they contain a usable phrase, story, insight, principle, image, or book material.
+- Return ONLY valid JSON. No markdown. No explanation.
+
+RETURN FORMAT:
+Return a JSON array of objects. Every object must use exactly these keys:
+item_id, parent_id, chunk_id, source_date, source_heading, level, category, rating, themes, keywords, corrected_text, notes, possible_book, journal_entry_id, essay_id, paragraph_id, sequence
+
+FIELD RULES:
+- item_id: Use the exact ID prefixes below with sequential numbering inside this chunk.
+  Journal entry: Journal_12_31_22_to_3_17_24_0003-JE001
+  Essay: Journal_12_31_22_to_3_17_24_0003-E001
+  Paragraph: Journal_12_31_22_to_3_17_24_0003-P001
+  One-liner/quote: Journal_12_31_22_to_3_17_24_0003-Q001
+  Principle/framework: Journal_12_31_22_to_3_17_24_0003-PR001
+  Story/illustration: Journal_12_31_22_to_3_17_24_0003-S001
+  Definition: Journal_12_31_22_to_3_17_24_0003-D001
+  Book idea: Journal_12_31_22_to_3_17_24_0003-B001
+  Analogy: Journal_12_31_22_to_3_17_24_0003-A001
+  Sermon idea: Journal_12_31_22_to_3_17_24_0003-N001
+  Research idea: Journal_12_31_22_to_3_17_24_0003-R001
+  Question: Journal_12_31_22_to_3_17_24_0003-X001
+  Personal testimony: Journal_12_31_22_to_3_17_24_0003-T001
+- parent_id: blank if no parent. Otherwise use the item_id of the parent item.
+- chunk_id: always Journal_12_31_22_to_3_17_24_0003
+- source_date: date of the journal entry if present.
+- source_heading: heading if present.
+- level: one of Journal entry, Essay, Paragraph, One-liner, Principle/framework, Story/illustration, Definition, Book idea, Analogy, Sermon idea, Research idea, Question, Personal testimony.
+- category: one or more of Publishable quote, Book idea, Principle/framework, Story/illustration, Definition, Sermon idea, Analogy, Question, Personal testimony, Research idea, Essay/reflection, Paragraph.
+- rating: 1-10 for usefulness/publication potential.
+- themes: semicolon-separated themes.
+- keywords: semicolon-separated keywords.
+- corrected_text: the extracted text, lightly corrected only by the rules above.
+- notes: brief note about context, parent/child relationship, uncertainty, or why included.
+- possible_book: possible book/project fit, such as Belovedness, Grace, Wisdom of Sparrow, Leadership, Trauma Healing, Sustainability, Sermons, Articles, Unknown.
+- journal_entry_id: item_id of the parent Journal entry if applicable.
+- essay_id: item_id of the parent Essay if applicable.
+- paragraph_id: item_id of the parent Paragraph if applicable.
+- sequence: integer sequence number preserving the order in the chunk.
+
+HIERARCHY REQUIREMENTS:
+For a dated entry with heading and multiple paragraphs, create:
+1. Journal entry item for the whole dated entry.
+2. Essay item if it contains a sustained reflection.
+3. Paragraph items for reusable paragraphs.
+4. One-liners/principles/questions/etc. inside the paragraphs.
+
+Do NOT choose only the best level. Extract all usable levels.
+
+CHUNK_ID: Journal_12_31_22_to_3_17_24_0003
+
+JOURNAL CHUNK:
+Date: March 13, 2023
+Met Keith on 3-13-23 in a session at PHP [likely a Partial Hospitalization Program for mental health] about feelings. Keith looks about 60 with a round face, broad jovial smile, and a bristly, hoary [grayish-white] look to him.
+I can’t remember what prompted me to introduce myself to him, but I gave him a fist bump and said, "I’m Matthew, what is your name?" He said, "Keith." I asked him, "What do you do?" He said, "Nothing." [Then he corrected himself], "Well, actually, I work for a neighborhood cafe with slot machines." I said, "That’s cool, there's one just down the street from me (Nancy’s)," but I could not remember the name of it [at the time]. He said, "There’s actually 15 of them in Sandwich [Illinois]." I said, "For the same company?" He said, "No, different companies."
+I said, "Well, that’s really cool." He said there are two kinds of people who gamble: those that gamble as a financial plan, and those that gamble just for fun. The ones who do it for a financial plan always leave angry. And I said, "The ones who play for fun don’t care if they lose money."
+[I noted:] I never had a problem with gambling, but I had a problem with scratch-off cards. I couldn't stop buying until I won one.
+Keith said he applied for disability step 1, but is not enrolled yet after 5 months. I said, "How are you making it?" He said, "The kindness of my landlord, who lets me do odd jobs to pay rent. Haven't paid rent since April." [I said], "You must be so stressed/grateful." [Keith said], "It makes me feel like a piece of sh*t (POS)." [I replied], "You're not a POS!" [Keith said], "I always feel like a POS."
+I told him that God forgives and loves everyone unconditionally, including him. He said he doesn't believe that anymore, gave up on God, and can't believe anymore. I shared my history of brokenness briefly with him, and he nodded his head affirmatively. I took his hand and said, "You are 100% [worthy]... and God loves you, never forget. I love you too." Tears welled in both of our eyes as I said it. "Good to be with you."
+He had a very red face but blond/gray bristly hair.
+Key Breakthroughs in the "Code"
+If you're wondering how certain garbled phrases translate, here are the fixes for the most distorted parts of the text:
+"gab r híñeme a gift bump" → gave him a fist bump. (The 'g' and 'f' are close on the keyboard, and 'gift' was an autocorrect of fist).
+"mattthje3w" → Matthew. (Fat-fingered extra letters and the number 3).
+"d utopía dop_" → do you do.
+"geingofrhood cafe" → neighborhood cafe.
+"atyakllky 15 off then in sandwisch" → actually 15 of them in Sandwich (Sandwich is a city in Illinois, which perfectly matches the mention of "Nancy's," a popular Illinois video gaming cafe chain).
+"Gable those that gánenle a s financial plan" → Gamblers, those that gamble as a financial plan.
+"folder dis setp11" → for disability step 1.
+"PAYHRNHADNTG PAIFRENDSINC APRIL" → pay rent. Hadn't paid rent since April.
+"feel like a pos" → feel like a piece of sh*t (POS is a common mental health/text abbreviation for this phrase, especially in contexts of low self-esteem).
+"uncción DiOrio Kuly includ hi" → unconditionally, including him. (The keyboard accidentally swapped to accents/symbols here).
+This is a beautiful record of a raw, empathetic moment between two people finding common ground in their struggles. It's well worth keeping preserved.
+
+	Date:	April 4, 2023 at 12:26:49 PM CDT
+
+Lunch with Joel Clousing
+Dennis praeger
+Francis schaeffer
+Jordan Peterson
+Look up his diet that healed him and his daughter Lion diet need salt and water
+
+Son Kade
+Insomnia unable to manage his life unable to finish college
+
+Keanen (sp?) overdosed on heroin
+
+Oldest daughter is gay
+
+	Date:	May 12, 2023 at 6:28:40 PM CDT
+
+Breaking the habit of being yourself
+Today I was able to recite all of my 80 values habits from memory.  Now I’m working on memorizing my narrative and my “Vision, Mission, Values 5/12/23”
+
+10/22/23
+You will not receive the full blessing life has to offer you until you love yourself unconditionally.  Otherwise you will block the blessing that comes because you don’t believe you deserve it or because you simply cannot see it in front of you
+
+	Date:	July 22, 2023 at 8:30:44 AM EDT
+
+# Digital Regression
+We will have to spend time every day doing mental exercises to counteract digital dementia and other negative digital influences the same way that we have to exercise out bodies to compensate for not having to do physical work for our jobs.  What kinds of exercises will these be.  Perhaps meditation, face to face conversation. Conversation clubs, definitely physical exercise.
+As technology makes things easier we need to find ways to build difficulty back into our lives.  Work on memorization to maintain our memory.
+
+	Date:	July 29, 2023 at 5:55:41 AM CDT
+
+I only have one life to live
+
+	Date:	August 4, 2023 at 4:18:22 AM CDT
+
+Spiritual maturity
+Jim wilder summarizing Dallas Willard
+“Spiritual maturity is when you spontaneously love your enemy”
+
+	Date:	August 5, 2023 at 8:25:23 AM CDT
+
+# Spiritual power versus political power
+
+Accusers
+Everything you did wrong is the whole you
+
+Jesus
+Everything you did wrong is forgiven because it is not the real you
+
+6/3/24
+When Christians had no political power, they were persecuted by those who opposed them.  And yet Christians loved and prayed for them.  When Christians did have extensive political power, THEY hated and  persecuted those who opposed them (against Jesus’s commands). Let this be a warning to those who seek to impose a Christian state or theocracy upon the nation.  The Jews tried legislating morality and it completely undid them.
+Remember Christ alone can bring about the peaceable kingdom because he alone is the prince of peace.
+
+	Date:	August 5, 2023 at 3:31:29 PM CDT
+
+Jim wilder
+Joy is when we’re glad to be together
+
+	Date:	August 8, 2023 at 7:28:42 PM CDT
+
+# Yesterday Monday august 7
+I noticed that several times I did something I feared.  They were not huge but I do not remember giving into fear once.  At one point I was walking past the office and I thought I should give Jackie an update about what I was doing.  I was afraid too and was tempted to just walk past the office door but I consciously decided to resist my fear and I stopped in and gave Jackie an update.  At another point I was going to thin out some perennials in the perennial border and I thought I should check with CK first.  I was afraid of what he would say so I was tempted to just do it but I consciously considered my fear and went ahead and called him anyway and he give me some relevant guidance.
+Sent text to team members about if anybody needed more mulch.  Later I asked Jackie and Liz in the office if they needed mulch. And asked Ck later if he had ordered it yet. Temptation was to just let it go and go without
+I notice that in my mania I am why more self disciplined.  I could only eat when I was hungry and stop eating when I was full.  I worked at my job quickly and hard and so I lost 20\+ pounds.  Today at Walmart I have in and bought some Bimbo orange and raisin cakes and are 3 of them before I got home and one of them at home before dinner.
+Today I said repeatedly to myself throughout the day I am unconditionally loved.  I’m trying to develop the habit of saying it to myself whenever I walk through a doorway.
+
+	Date:	August 10, 2023 at 7:28:31 PM CDT
+
+I am infinitely and unconditionally loved.
+Lord let this truth settle into my heart and mind and best fruit to your honor and glory.
+
+	Date:	August 20, 2023 at 3:12:13 AM CDT
+
+	Date:	August 20, 2023 at 3:12:51 AM CDT
+
+# Books and essays to write
+The revenge of the nerds: how ingenuity became the worlds greatest superpower
+Observation is not judgment human judgment usually comes with a sense of superiority
+A reframing of Heaven and hell
+Hell was a way to use fear to lead people to Christ.  That is off the Devil because God leads with love and the devil leads with fear
+Hell is actually an expression of God’s love
+
+	Date:	August 20, 2023 at 8:15:15 AM CDT
+
+Oh to love myself would make all the difference in the world but how does one do that.  I once thought it was by acting like someone who believes they are loved. But how do you get started? It’s there any certainty to be had or is it simply a matter of acting on faith.
+
+	Date:	August 23, 2023 at 3:21:03 PM CDT
+
+The School of Greatness with Lewis Howes
+Lewis talks about how he overcame his difficulties by overcoming his fears.  Some great business tips.  A lot of Lewis’s bio that is really remarkable.
+
+Episode 47
+Steve Chalke and the Oasis story
+Founder and President of ministry conglomerate (my term) in the UK.  Amazing model of holistic ministry living according to Jesus example. Super inspiring.
+
+	Date:	August 30, 2023 at 4:59:20 PM CDT
+
+# Therapy
+My mania is evidence that I can experience unconditional love.  Curt said that this sounded unrealistic.  He said if I did a live off cocaine and had a really powerful experience, it would be unrealistic to live in that experience when you were not high.  I said I know that loving myself is possible because many people living and passed have lived out of love--it is how the saints lived
+Curt asked if I were to speak with my 3 or 4 year old self with Jesus present what would your 48 year old self say to your younger self or what would Jesus say?
+You are infinitely loved
+You matter
+It’s good that you are alive
+You were created for a purpose.
+
+	Date:	September 2, 2023 at 2:36:40 PM CDT
+None of my accolades determine my worth, but they give an indication to the kind of impact I will have.  I will be full of joy.  I will be grateful for all the suffering I have experienced because it brought me to the present moment.
+
+	Date:	September 3, 2023 at 9:38:34 AM CDT
+
+Remembering my future
+I feel on the cusp of my future.  I started remembering my amazing future during my manic episodes.  I am so excited about helping other people know how much they are loved.  I’m committed to helping people all over the world transform themselves by accepting the divine unconditional love and then being empowered to love others.  My transformation will happen when I can embrace God’s love for me as eternal reality.  I will use the power of God’s love to change the world.  I cannot even imagine all the ways good will use me to impact the lives of those around the world.  I will be sent to those who suffer the most and to those who are most rejected by society.  When people see how much the least loved are will begin to believe that it is possible that they are loved.
+I want to have a ministry in prisons to those incarcerated for murder and sexual crimes.  I want to help them discover how loved they are, to educate and to reform them.  I want to help them become emotionally and spiritually healthy adults who are able to have healthy relationships.  For those who will return to society, I will help them to transition back.  I will help them find work or build their own businesses, get connected to community and find romantic relationships if they want them
+I want to reform schools so that they can work in conjunction with families to raise kind, generous, intelligent, inspired young adults.  I want to work with at risk youth in at risk schools.  I want to have a model like the Oasis schools in the UK.  I want to provide unique training to teachers so that they are not just teaching content but they are shaping the humanity of their students
+I will have boundless energy,  clear vision,  a compassionate heart and an uncanny intellect.  I will know how connected I am with everything and how my actions and thoughts effect everyone else.  At rock bottom I know that I am infinitely loved.
+My insomnia and bipolar disorder will be healed.  I don’t have the faith to believe it yet but I pray my same sex attraction will be healed and I will be sexually attracted to Dawn.
+
+Dawns fibromyalgia will be healed and she will lose 100 pounds.  Dawn will also be empowered by God’s love to serve and to work on the growth of others.  She will be released into her power to make the world better.
+
+	Date:	September 3, 2023 at 5:20:02 PM CDT
+
+# Sunday before Labor Day
+Went to church and felt disconnected. Bagged up my lunch and said goodbye because I was going over to my mother-in-law’s house.  Farrell seemed forced and lacking emotion.  At mom’s e had a nacho bar and p played trains with mom, Beth and Janet.  My brain felt cloudy and I felt disconnected from everybody.  I remember thinking that I was not feeling happy.  I felt frustrated because my brain was not working.  I repeatedly lost track of when it was my turn.  I would play a piece not realizing that there was a double that had not been fixed.  Almost every time I forgot to put my train in the station when I couldn’t play any of my pieces.  I remembered playing trains when I was manic and I was on top of the game and was thinking so clearly.  I will think like that again.  We were meant to think like that--not cloudy and tired and distracted by negative emotions.  My brain does not work optimally but it will when my healing comes.  I know that my body and brain will be healed and I will leap like a gazelle.
+
+9/4/23
+I feel unhappy as I sit here looking up books on enlightenment.  Until I can be consistently content, joyful and loving I have nothing to offer others.  Rather I will greedily take from others what belongs to them.
+I feel stuck in my job and I’m life--like I’ve reached an unnding plateau.  I can see the fruit on the limbs above high above me, but regardless how much I step I cannot track what my heart desires.  I am hoping that reading some books about enlightenment will provide a ladder so that I can reach the food that will sustain me.
+
+	Date:	September 5, 2023 at 6:35:19 PM CDT
+
+# Scared of Jackie
+I was in the office several times today and I was scared that Jackie would find me there.  If I heard footsteps I would feel almost panicky.  When I’m out in the gardens I’m afraid that Jackie will pop up undetected and tell me that I shouldn’t be doing what I’m doing.  Today she asked if I had done anything else besides spraying the roses before break.  She said I had spent two hours driving the gardens and writing up my task list.  I had to work at framing this as this is something I can improve but it has nothing to do with me “being wrong”.   Being on high alert is not healthy or fun.  It does not contribute to a sense of well-being.  I especially feel it if I’m uncertain about what to do with my time.  Maybe I should just ask Jackie for input.   In my new self loving self I am at peace and with good conscience at all times.  I do not fear interacting with Jackie or CK, or any authority.  I lay claim to my own authority.
+I am waiting earnestly for my renewal.  There’s definitely some frustration there.  I am watching and listening and reading what I can to make the seismic shift or perhaps the minute shift from fear to love.  Oh great Spirit, well up in my heart your undying love.  Oh Christ, teach me your Way.
+Predictions
+Win the Nobel prize
+
+	Date:	September 8, 2023 at 6:39:36 PM CDT
+
+You have to see the big picture
+Today Jackie called me on the radio to come to the keyhole garden.  When I got to the keyhole she asked me if I had been watering the actaea.  I told her I’ve been watering them Monday Wednesday Friday.  That’s not totally accurate I’ve probably watered them twice a week since Jackie poured them out to me about a month ago.  She challenged me and said the soil looks really dry.  She then asked when I’ve watered the actaea if I noticed the actaea in the ground cover behind it.  She asked why I haven’t been watering it.  I didn’t have a response.  I think because I couldn’t think of the “right answer” I couldn’t respond.  She said I should be watering everything in the ground cover area behind the keyhole, perennials, ground cover, trees.  She finished our conversation by saying “you have to see the big picture.”
+Yesterday when u was watering the hellebores in the beech collection.  She asked why I just watered them.  She said I should be watering all of the perennials and the big beech tree.  I told her I was just watering the wilty looking plants.
+She said I should use rotating sprinkler that gets the whole area (an impact sprinkler that is rotating 360 degrees).  I thought but didn’t say that a rotating sprinkler would spray the paths on the two sides.  But I suppose I can see it so it only stays within the bed.
+I did not get too upset but I felt frustrated that I miss so much.  I want to see the big picture.  I don’t want to have to be told every single thing.   I want to take more ownership of my area of responsibility.  I also want to be impeccable with my words and not say what I think people want me to say even if it’s painful for me.
+
+	Date:	September 10, 2023 at 10:43:31 AM CDT
+
+Autobiography of a Yogi
+Today I started listening to autobiography of a yogi on YouTube.  It is one of the books I recently ordered from Alibris.  I also started reading the art of happiness by the Dalai Lama.  I am on a pursuit of happiness which I believe comes from self love and self acceptance.  I believe eastern philosophy and religion contains clues to achieving happiness.  I have been acutely aware of my lack of true happiness.   I have felt unfulfilled and discontent, disconnected and unloveable.   Perhaps reading my way to enlightenment is not the right way.  Perhaps I am missing dialogue partners but I do not know where to look to speak with like minded people.
+
+	Date:	September 28, 2023 at 7:34:26 PM CDT
+
+Working on my  thoughts
+Today after lunch I thought I should tell Jackie what I was planning on doing.  But I was afraid that she would ridicule or critique what I planned on doing.  I overcame my fear and told her.  I am going to pick up stuff from the hosta volunteers and then spray the runways behind the First Division Museum and treat the Christmas ivy in the keyhole.  Jackie didn’t correct me or suggest something else.  She just asked what Christmas ivy is.
+A small victory but a victory nonetheless.  I also checked my email three times as Jackie asked me to.  I will be more assertive about informing Jackie about what I’m doing and will worry less and less about her response.  I am (not necessarily feeling) but actually becoming a more valuable employee.
+
+Need to remember to schedule time to clean out sign room.
+
+	Date:	September 29, 2023 at 10:10:39 AM CDT
+
+New thoughts
+I will know and feel the I unconditional love of God
+
+	Date:	October 7, 2023 at 2:38:09 PM CDT
+
+Marissa Peer
+You’re always enough and never forget it
+You make your beliefs and then your beliefs make you and then you go out into the world and it reflects your beliefs back to you
+
+	Date:	October 9, 2023 at 10:13:50 AM CDT
+
+# Went walking with clay yesterday
+He asked me what is on my mind. I told him that I’m still thinking about how to realize God’s unconditional love.  I still believe that one of the main ways is to live as if you were loved unconditionally.  If you hide yourself in your bedroom, you will feel lonely and rejected; but if you agree to go to a family party, you might end up having a good conversation and feeling a real human connection--even love.  I also said part of my searching may just be the searching of the restless heart that has not yet rested in God and that e we perhaps never feel rested until we return to God.  I share the story of Thomas Merton who at the end of his life began exploring eastern religion and philosophy including Buddhism.  I don’t think that he renounced his Christianity; but the form he had received no longer completely satisfied his spiritual hunger.
+I know that I have room to grow because I have met other people who know and feel his unconditional love.  I thought of my college acquaintance Seth (I can remember his last name) that played lacrosse.  He was so comfortable with himself and with other people and his sense of humor put you at ease.  I think of Janna Francis (?).  And there are more of I put my mind to it.   I am not seeking the imposible and yet I told clay that perhaps it just takes a miracle.
+
+	Date:	October 10, 2023 at 12:57:41 PM CDT
+
+# Definition of love
+The desire and act of joining with another and giving to another.
+
+Contributing to the growth of another
+
+To enliven another
+
+To desire and act toward the best in another
+
+The definition of loving a human or creation is different than loving God because there is no change in God
+
+To inspire positive change in another
+
+To love God is to draw near to him
+To give ourselves to him
+
+To give ourselves to another
+To spend our time, energy and resources on another
+
+	Date:	October 11, 2023 at 4:09:08 PM CDT
+
+Session with Curt
+Dr Philips increased Wellbutrin
+On edge because I’m always waiting for criticism from Jackie and CK.
+Feeling incompetent
+
+I’ve been obsessed by beautiful men lately.  I see masculine men and undress them in my mind.  Then I feel worse about myself. This has been heightened in the last 3 or four months
+
+I’m thinking a lot about giving oral sex and drinking semen.  I’m always scanning my environment for attractive men. I’ve been eating my own since several weeks after getting out of the hospital.
+
+Giving oral and drinking semen are symbols of taking in the masculine.  Symbolic confusion.
+
+Only intimacy I had with my father was giving him oral sex.  It’s become the template of how I should connect intimately with other men
+
+Leader lover Warrior lover sage from crucible
+Balanced sense of masculinity
+
+Isaiah 53
+Masculinity is not attractiveness, muscularity, physical strength,
+
+We never arrive but if we achieve our goal it has to be maintainenst
+
+Jesus is our model of masculinity
+2 Timothy 1:7 I have not given you a as spirit of humidity
+Be joyful always
+You are my son whom I love
+I will never leave you or forsake you
+Good does not look at the outer appearance but he looks at the heart
+Fearfully and wonderfully made
+
+Healing the masculine soul
+7 pillars of a man
+
+	Date:	October 12, 2023 at 7:36:34 PM CDT
+
+Yesterday I felt called
+To view Jackie and CK as my gurus--to show them great respect and to see them as important teachers in my life.  Sometimes God uses difficult people to help us to grow the most.
+
+	Date:	October 16, 2023 at 7:03:22 PM CDT
+
+# Dealing with anxiety
+Yesterday I asked Dawn what Can I do to keep from getting anxious and on high alert recruiting I have a meeting with Jackie.  She said she didn’t really know--that it’s something God has to do in my heart.  Later she said it’s all about your self talk and then she told me that she loves me, that I’m intelligent, competent, kind and so on.  These responses were not satisfactory.
+Today I was driving back to the office and I remembered how I would rub my chest when I was manic when I was feeling anxious.  I rub my chest and say I am safe, I am loved, I matter, I belong, I am beautiful, I am enough and so on.  It was really helpful before and I believe it will be helpful in undoing my calamitous negative thinking in anticipation of talking to Jackie or CK.
+
+	Date:	October 20, 2023 at 5:07:58 AM CDT
+
+Dream with clay
+I was walking  a tenement building.  I had an entourage.  I came to a door that wouldn’t lock and tried to fix it.  I couldn’t sort it out so someone else haughtily showed me what to do.
+
+I was in a church like Rez at Glenbsrd which was also a cathedral of note.  The service was about to start and I couldn’t decide where to sit.  I was by myself and was feeling very rejected.  I did not have the courage to sit next to any of the people many of which I already knew.  I saw high school acquaintances, Abby Bartels and her family, purple from college and from Rez. I eventually saw clay and his parents and waved at them and called out to clay.  Clay did not respond and I was sure that he was deliberately ignoring me. It’s the dreaded finding a seat in the lunch room.   I felt too ashamed and dejected.
+I know I have to l overcome my fear of people and rejection.
+
+	Date:	October 21, 2023 at 4:54:46 AM CDT
+
+Dream
+On a ship docked in harbor.  We’re harbored next to as large high rise building.  It started to sink so everyone had to evacuate.  I had been working on repairing the bathroom.
+I’m a large cafeteria. there a giant mural on two walls that has many smiling skeletons.  I go to ask if i should just repaint the existing one or paint something new.  Another teacher speaks up and says just put the stuff in the cleaning closet.  Another teacher does as well do I put away my painting stuff and I don’t paint the mural
+
+I’m working on a project with paper and I’m trying to figure out how to find the exact center of a circle.  I have two circles cut out and I want to align them perfectly with one circle exactly next to the other.
+
+	Date:	October 21, 2023 at 3:05:01 PM CDT
+	Weather:	62°F Windy
+	Location:	373 S Schmale Rd, Carol Stream, Illinois, United States
+
+# Spiritual goals
+I don’t ever want to think that somebody looks funny, weird or ugly.
+How do i accomplish this goal?
+Surround myself with images of people the world considers unattractive and meditate on those images until I see the beauty in their faces
+
+Find the least and make them feel like the most important person in the world
+
+To cease considering anyone my opponent
+
+To stop comparing myself to others
+To never think that I am better or worse than someone else
+
+To accept that I am unconditionally loved
+
+To love others unconditionally
+
+To not judge others or myself
+
+I am arrogant and shame filled at the same time
+
+To do no intentional harm to another human being
+
+	Date:	October 21, 2023 at 4:11:17 PM CDT
+	Weather:	60°F Windy
+	Location:	1435 Robinwood Dr, Aurora, Illinois, United State
+	Location:	1435 Robinwood Dr, Aurora, Illinois, United States
+
+Transforming society
+Can society change for the better?
+Yes and in many ways it has been changing for the better.
+Can society change instantly?
+Yes because an individual can change in an instant. Eg enlightenment.
+Our technology has fragmented society but our technology is what makes possible the instantaneous change of society posible in particular with social media
+
+My enemy
+Many good people May think they have no enemies but perhaps you can think of an opponent, adversary, someone who opposes you or villain in your story.  If you know anybody that fits any of these words than they are your enemy.  When Jesse’s says lover your enemy he is saying lover all of these people in your life
+
+	Date:	October 22, 2023 at 7:45:58 AM CDT
+
+# Unconditional Love
+How does someone who deeply accepts that they are unconditionally loved act toward themselves and others?
+The more deeply you know gods love the more you look like Jesus
+
+Are fully transparent, be authentic (does not hide weakness, failings, sin)
+Takes full responsibility for words, actions and their consequences
+Embraces unique weirdness of self and
+others
+Loved in peace but also with a sense of urgency (knowing that life is short)
+Listens to others with undivided attention
+Speaks their peace
+Affirm and challenge others
+Accept affirmation and challenge from others
+Take initiative in doing what love requires
+Sets an example for others
+Exercised leadership
+ They keep their word to themselves
+They keep their word to others
+They finish what they start
+Their self-talk is positive and kind
+They forgive themselves quickly
+Dream big dreams
+Ask for what they need
+They do hard things
+They love themselves and others unconditionally
+Try new things
+Give generously
+Express gratitude
+Have a plan
+Invest in themselves
+Learn new things
+Do not compare themselves to others
+Invest in relationships
+Regularly do things that are interesting or fun
+Express compassion to others
+Forgives self and others quickly
+Delights in gifts of life
+Celebrates life in all its forms
+Perseveres through challenges
+Set and achieves goals
+Loves to solve problems by
+Speaks confidently
+Doesn’t take anything personally
+Assertive
+Peace maker
+Builds community
+Compassionate
+Courageous
+Creative
+Gentle and humble
+Non-judgmental
+Well-mannered
+Optimistic
+Outwardly focused
+Use their time effectively
+Powerful
+Righteous
+Submitted to God
+Wise
+Doesn’t worry
+Accepts self and others despite flaws
+Feels like they belong in every situation
+Always fostering connection
+Free in every situation
+Always does the most important thing first
+Incredibly happy and joyful
+Believe that love wins
+Accepts every circumstance--including difficult ones
+Self-mastery of mind
+Always sees outcomes as gifts
+Sees infinite possibilities
+Always feels like a success; helps others to feel like a success
+Embraces sustainability
+Rebels in the truth
+Lives adventurously
+Integrated: life aligned with values
+Feels fully alive
+Content in every situation
+Curious
+Good-humored
+Grounded
+Clear-minded
+Strong
+Feels worthy
+Mindful
+Overflowing with joy
+Relaxed
+Rested
+Fears nothing
+You cannot love yourself unless you have been loved by someone else.  We cannot muster self love if we do not believe that no one else loves us.  It only takes the love of a single person to show the seed of self love.  Ultimately the most important lover of our souls is our Creator.  But in order to access that love, we must accept and believe it first.  This is much easier to do if we have physical evidence of it from a loving earthly caretaker (mother or father) or friend.  We humans are meant to be his eyes and ears, hands and feet, to each other.  If we reject human community, then we are rejecting community with God and therefore the unconditional love of God.  Sometimes people evade community by saying i am an introvert, but in effect they are denying their own humanity and the love that God would show them through others.  It is true that some recharge their energy by being alone, but it does not mean that a healthy individual does not need meaningful human relationships and ultimately a relationship with God.
+
+A child experiences unconditional love in the spaces between their achievements
+
+Perfect love drive out fear
+Two common fears are pain and death.  If you are unconditionally loved then death has no sting because death cannot separated us from our lover our beloved
+Pain can no longer harm because there is no longer punishment in pain only refining
+You are willing to experience any suffering for the love of the beloved
+
+	Date:	October 25, 2023 at 6:40:38 PM CDT
+	Weather:	64°F Cloudy
+	Location:	1435 Robinwood Dr, Aurora, Illinois, United States
+
+# What God Sees When He Looks at Me
+I prayed Mike Bickle’s prayer. Lord showed me what you see and how you feel when you look at me.
+
+I just finished The Untethered Soul by Michael Singer.  He ends his book by saying... Your God is in ecstasy and there’s nothing you can do about it.  And if God is in ecstasy, I wonder what he sees when he looks at you?
+
+10/29/23
+If God feels ecstasy when he looks at me, then how should I feel about myself?  Does he see the glorified version of me when he looks at me?  Or does he see the broken, sinful, limited version of me.  Or does he see both or every version of me?  I can’t seem to make the shift to feeling and knowing that I am unconditionally loved.  Still the closest I can come to it is to believe that I will know it, when I start to live as someone who believes it.
+
+	Date:	October 30, 2023 at 2:11:20 PM CDT
+I made my decision and I’m grateful for it and for the opportunity to continue to get well.  I will not second guess myself.  I say no to the amorphous dis-ease and guilt that I often feel about my decisions.  I want to make confident decisions and I will.
+
+# Nervous system repair
+Positive affirmations
+Always on edge at work and even around Dawn sometimes.
+I rub my chest (or leg or arm if the chest seems awkward)
+And say
+I am
+I am here
+I am safe
+I am unconditionally loved
+I am enough
+I am worthy
+I belong
+I matter
+I am powerful
+I make a difference
+My future is joyful
+
+	Date:	November 4, 2023 at 6:39:37 AM CDT
+
+I go to la la land to escape into sexual fantasy, negative comparison, past stories, future worries, generally anything negative.  I rarely if ever find myself preoccupied with positive thoughts.  How do I change this
+
+	Date:	November 4, 2023 at 7:59:34 AM CDT
+To love myself
+Yesterday at dinner I was telling Dawn how frustrated I was at myself for being so indecisive today at work. I told her that until I can accept God’s love for me I will always be afraid of other people’s responses and judgments.  But someone who doesn’t believe they are loved cannot hear it when other people in their life tell them they are loved.  They will simply deny it or refuse to believe it. The change has to come from within--and how does that change happen?  Until I figure it out I will always be alone even if I’m with other people.  Lord give me a revelation of your love for me.  Or show me if I just have a lack of faith and I just have to start doing something where I can then grow into the love you have for me.
+
+	Date:	November 5, 2023 at 2:20:48 PM CST
+	Weather:	60°F Cloudy
+	Location:	311–355 S Lincolnway St, North Aurora, Illinois, United States
+
+Trauma
+Little t and big 2
+Before age two has long lasting emotional and physical and neurological effects
+
+	Date:	November 18, 2023 at 4:57:45 PM CST
+Rules of success
+Make big asks
+Ask over and over again, of anyone who will listen, until you receive
+
+	Date:	November 18, 2023 at 10:35:52 PM CST
+
+# Ready to be released
+I am so ready to be released and unleashed.  I am tired of being unloved and unalive.
+One of God’s greatest gifts to me was my mania because it gave me a taste of being the beloved and the power that love has to transform.
+God show me how to accept the mantle of your love.  I am desperate for it.  Give me the courage to take the steps that are needed.
+I find myself regularly judging others.  Drivers that ride the merge llame to the end.
+Tonight was Kristi’s birthday celebration.  Clay did not want to come because he was tired from work.  I thought les of him because he was taking care of his needs.
+
+	Date:	November 19, 2023 at 10:26:11 AM CST
+	Weather:	47°F Clear
+	Location:	1255–1299 Butterfield Rd, Aurora, Illinois, United States
+
+The life of an infant
+A baby instinctively knows to cry out for any reason it is uncomfortable or in pain: hungry, wet, itchy, hot, cold, separated, afraid.  This crucial instinct can be deliberately or undeliberately trained out of the infant.  When an infant’s needs are promptly attended to, an infant feels safe, loved and develops a a solid sense of being.  This healthy sense of self is more difficult to instill in a child the older they become.  A weak sense of self instilled in an infant can be recovered by a toddler who is unconditionally loved.
+Developmental task is to develop secure attachment to primary caregivers
+
+	Date:	November 19, 2023 at 11:48:16 AM CST
+# My mania
+Magical thinking.  I believe that because I want or think something, that it will happen or be real.
+
+	Date:	November 19, 2023 at 3:16:24 PM CST
+True power
+Power is the ability to influence people and things by the application of love
+
+Love
+Love desires and works towards the good of the beloved
+
+	Date:	November 19, 2023 at 6:26:16 PM CST
+
+The fall of Mike bickle
+I told Dawn on Friday after dinner about the allegations against Mike bickle.  Her reaction was why can’t these guys keep it in their pants.  I told her that I believe that men abuse when they themselves have been traumatized.  It does not excuse them from responsibility but it means that we should also have compassion.  I had said that Jesus calls us to love those who are in prison.  And she said but he never said that they shouldn’t be in prison.  Society places consequences on those who break the law of consensus.
+I shared how by God’s Grace I have not abused anyone in my brokenness.  Then I remembered that I have and I said but I actually have.  I have abused.  Does that make me an abuser or is it possible to be a former abuser.  I have sinned in my brokenness.  And it’s only by God’s Grace that I was not punished for it.
+
+	Date:	November 19, 2023 at 11:24:29 PM CST
+
+# Dreamt of a game
+
+Dreams make so much sense until you try to tell them to someone else (seem coherent)
+
+	Date:	November 20, 2023 at 3:55:42 PM CST
+	Weather:	48°F Cloudy
+	Location:	1241 N Lake St, Aurora, Illinois, United States
+
+# Suffering is
+When we know that we are unconditionally loved, we no longer fear suffering because it no longer signifies punishment, rejection or abandonment.  Instead we know that God is suffering with us and that our suffering will produce good fruit in our lives and the lives of others.  There is no suffering that God cannot redeem.
+As we mature and experience unconditional love for others, we realize our profound connection to the person next to us and across the world from us; we suffer when they suffer.  When they rejoice, we rejoice with them
+
+	Date:	November 21, 2023 at 6:27:57 AM CSt
+
+# What is unconditional love?
+
+When you begin to love others unconditionally, you will see them in a whole new light.  You will fall in love with everyone you meet.  You will want to know everything about them, you will want to serve them, you will want them to experience the fullness of joy.
+Jesus loves us unconditionally.  The reason why he never got married is because all of humanity was his beloved.  Jesus was in love with humanity.  We are the feminine in the arms of the divine masculine.
+
+When we are unable to accept love, we unconsciously reject goodness, blessing and abundance in our life.  We believe we are undeserving of these things.  Until we embrace the love that God and others have for us, our lives will demonstrate generational curses,  brokenness,  ill health and poverty
+
+	Date:	November 22, 2023 at 6:15:53 AM CST
+	Weather:	33°F Mostly Cloudy
+	Location:	1435 Robinwood Dr, Aurora, Illinois, United States
+
+It’s so hard!
+Last week around the 15th as I pondered the changes required for me to succeed at work and in life, I began to feel overwhelmed.  I will need to overcome my fears and fear based habits.  I will have to do the hard work that I try to avoid. I will have to take initiative and practice leadership.  I will have to be willing to work alone, but also learn to work cooperatively with others.  I will have to work harder than I’ve ever worked.  I will have to get in the habit of looking before I leap.  Thinking before I look and planning before I think. I will have to endure many “no’s” and take many orders.  I will have to structure and order my time.  I will have to organize and keep up with all of my electronic communications.
+It all felt so overwhelming.   It felt so hard.  But yesterday I realized the joy that comes with freedom and the ability to change into a better version of me (not as a condition of being loved) and the ability to make an impact wherever I am. I could see the winsome, funny and happy version of me.  I could see the compassionate, thoughtful, imaginative part of me.
+I can now see myself having very positive and productive reviews.
+
+With all of this change the world will reflect back to me the unconditional nature of god’s love.  I will begin to believe I am loved--and this greatly through a work situation that I wanted to quit just last week.  Jackie and CK are going to become my good friends, instead of them feeling like my enemies.
+
+	Date:	November 22, 2023 at 6:53:50 AM CST
+	Weather:	33°F Mostly Cloudy
+	Location:	1435 Robinwood Dr, Aurora, Illinois, United States
+Reimagining Work
+Work cares for and assists the growth of their employees in every dimension
+Work wants to know what you dream about and will help you to achieve it.
+In turn employees will be more creative have more energy, be more invested and be more resilient.
+See Vishen Lakhiani he wants to change education system in 100 countries.  He wants to see mindfulness training in every company.  Add work place is more structured, work makes people unhealthy and sick and reduces people’s lifespans.
+
+Being lonely impacts life expectancy s as much as smoking 15 cigarettes a day--more than cancer and heart disease
+
+	Date:	November 22, 2023 at 1:50:11 PM CST
+What makes you powerful?
+On 80/94 driving to mom and dad I asked Dawn what she thinks makes someone powerful.
+
+She said when you feel confident and competent in yourself and know your own value.  She asked me what I thought and I told her that I think it is the ability to love others unconditionally that makes a person powerful and influential.  Love is incredibly attractive and loving people allowed them to be their authentic selves.
+
+Now I notice how often I judge everything.  I don’t like the color white.  Why would someone buy a white car as I drive by one on the highway.  That small blond girl is too small and too feminine to be driving that ford F250,
+I think I’m going to journal all of my negative judgments for a week so I can see the extent of my problem and so I can catch myself before I make judgments in the future.
+
+# People’s Favorite books
+The education of hymen Kaplan
+
+Movers and shakers
+
+Nat ware
+Founder of world’s largest nonprofit consultancy, 180 degrees consulting
+Started organization called Forte to bring free education and healthcare to the disadvantaged
+
+	Date:	November 28, 2023 at 6:53:24 PM CST
+	Weather:	16°F Partly Cloudy
+	Location:	1435 Robinwood Dr, Aurora, Illinois, United States
+
+Judgy me
+I am judgmental
+ Things i judge
+Clay not wanting to go out at night or to spend a few days with the prayer group.
+The face pics of YouTubers that look like they’re drugged
+
+	Date:	December 2, 2023 at 3:40:37 PM CST
+# My mission
+To contribute to human flourishing
+Healthy mind, body, family, relationships, community, society, planet
+Sustainability
+
+	Date:	December 6, 2023 at 4:18:53 PM CST
+On a hamster wheel
+My life seems meaningless.
+Keeps me from loving others and myself
+My work performance is correlated with my view of myself
+Dissociation
+Thought replacement with negative thoughts
+
+	Date:	December 9, 2023 at 12:16:39 PM CST
+	Weather:	48°F Mostly Clear
+	Location:	Wheaton, Wheaton, Illinois, United States
+
+Interrupting cow
+Last Wednesday I wanted to set a time with ck to help me turn over the engraving machine so I could finish the breakdown.  I had done everything on top.  I went downstairs and ck was talking to Jamie with the door closed.  I thought I’ll ask him later at break time but then I remembered that I’m not going to wait to interrupt any more.  I went in and said excuse me ck I have a question to ask you.  When I asked him, Jamie said let’s do it now, let’s go! And we got pancho and the four of us were able to flip the machine over to finish disassembling it.  Later ck and Pancho helped me take the chassis out back.
+
+	Date:	December 23, 2023 at 10:31:55 AM CST
+	Weather:	46°F Cloudy
+	Location:	Wheaton, Wheaton, Illinois, United States
+
+# Life goals
+
+To throw a huge Christmas party for the homeless.  Provide transportation amazing food and fun activities Photo Booth
+
+Lord make me super resilient
+
+If I believe that I am the person of greatest consequence than I am usurping the unique position of God in the universe.  He alone is the person of greatest consequence.
+
+	Date:	December 25, 2023 at 5:15:23 AM CST
+	Weather:	49°F Cloudy
+	Location:	1435 Robinwood Dr, Aurora, Illinois, United States
+
+# Agency
+We don’t learn to love ourselves until we develop a true sense of agency.  Without it, we may feel love when circumstances are favorable, but lose that sense of love when circumstances are less than favorable.  When we have agency, we choose our thoughts, feelings and actions and we can choose to experience love whenever we desire it.
+I think part of my euphoria in mania is that I  feel a high sense of agency which is unshakeable by my circumstances.  Agency gives a person a deep sense of power, first to choose one’s own internal landscape and to also love and influence those around you.  This power is the presence of the divine within you.  For God is the procreator, initiator, first and last mover.  What he desires is.
+So why do I struggle with agency over my thoughts and feelings and feel so very little love for and influence over others?
+Often our past wounding taught us that we were powerless.  It is like the chained elephant who is restricted to a small circular area who after being unchained continues to confine itself to the radius of that circle. We believed that what someone else could do to us could take away our belovedness and that our belovedness required the loving attitudes and actions of our caretakers.  This is childish thinking.  The apostle Paul talks about putting away immature thinking.
+1 cor 13:11
+New Living Translation
+When I was a child, I spoke and thought and reasoned as a child. But when I grew up, I put away childish things.
+
+”For now we see in a mirror dimly, but then face to face. Now I know in part; then I shall know fully, even as I have been fully known.“
+1 Corinthians 13:12 ESV
+https://bible.com/bible/59/1co.13.12.ESV
+
+The product of mature thinking is love for others.  This is the sign and measure of true psychological healing:  can you profoundly and sacrificially  love others with the implicit understanding that you first accept god’s love for you.
+
+There is one selfish desire that should motivate our service--that we would experience happiness, joy or satisfaction when we serve others.
+”looking to Jesus, the founder and perfecter of our faith, who for the joy that was set before him endured the cross, despising the shame, and is seated at the right hand of the throne of God.“
+Hebrews 12:2 ESV
+https://bible.com/bible/59/heb.12.2.ESV
+Christ’s own joy motivated him to make the ultimate sacrifice.  And when we are filled with joy there is no sacrifice that God is calling us to that is too great for us to endure.
+
+When Ezra the priest read the Law to the Israelites returning to Jerusalem the burden and conviction of it caused all the people to weep
+”Then he said to them, “Go your way. Eat the fat and drink sweet wine and send portions to anyone who has nothing ready, for this day is holy to our Lord. And do not be grieved, for the joy of the Lord is your strength.”“
+Nehemiah 8:10 ESV
+https://bible.com/bible/59/neh.8.10.ESV
+But Nehemiah said the joy of the lord is your strength.
+Those of us who have childhood wounds, may still be weeping within but the lord desires to turn our mourning  into dancing, our wounds into strength and our sadness into joy.
+”You have turned my mourning into joyful dancing. You have taken away my clothes of mourning and clothed me with joy, that I might sing praises to you and not be silent. O Lord my God, I will give you thanks forever!“
+Psalms 30:11-12 NLT
+https://bible.com/bible/116/psa.30.11-12.NLT
+Accept God’s unconditional love, it is the truest food for the soul.
+Being the beloved does not mean ease or lack of suffering or material abundance, it is instead the power to change yourself , your family, your community, your nation and the world. There is no one who can’t change the world.
+
+To love yourself, work on creating or releasing more agency in your life.  Meditate on empowering truths.  You must train your thinking and your thoughts.  Place reminders of the truths throughout your physical space, memorize scripture or other deep truths about you, God and the universe.
+”and behold, a voice from heaven said, “This is my beloved Son, with whom I am well pleased.”“
+Matthew 3:17 ESV
+https://bible.com/bible/59/mat.3.17.ESV
+Your God dreamt you, created you, birthed you and called you beloved son or daughter.  And before you accomplished anything, he said about you with you I am greatly pleased.  You look like your Father!
+
+Practice living as if you were someone who was unconditionally loved.  Over time practice makes a habit automatic.  We have practiced many negative thoughts that have become automatic and now is the time to replace them with true, more loving, more liberating thoughts.
+Work on deepening your existing relationships and developing new ones.
+Work on overcoming your fears
+”There is no fear in love, but perfect love casts out fear. For fear has to do with punishment, and whoever fears has not been perfected in love.“
+1 John 4:18 ESV
+https://bible.com/bible/59/1jn.4.18.ESV
+With every fear you overcome, you will be and feel stronger and stronger.   We fear what we experience as punishment, eg the age old belief that physical illness is punishment from God for our transgressions.  But if suffering is seen as testing, hardening and purifying than we can experience it with some measure of joy and gratitude
+In summary you can develop self love and agency by doing the following:
+
+Retrain your thoughts
+Live as if you were the beloved
+Deepen existing relationships and develop new ones
+Overcome your fears
+
+# Bias toward action
+Bob Goff
+
+I’m feeling a shift from a bias toward passivity to a bias toward action.
+Look for definitions below
+
+Yesterday I began a journaling practice that I heard from Rangan Chatterjee a couple of days ago.  The first morning question is the most important thing that I must do today?
+
+Yesterday I restarted the habit of only eating when I’m hungry and stopping eating as soon as i am no longer hungry or I feel moderately full
+
+The bias toward passivity says:
+I don’t want to
+I don’t have to
+I’m not ready
+I’m in pain
+I don’t feel like it
+I’m too tired
+I’m too sad
+I can’t
+I’m afraid to
+It’s not the right timing
+The conditions are not perfect
+I can’t do this perfectly
+I don’t have the support I need
+I need to prepare more
+I need to read and study about it more
+
+Bias toward action says
+I can
+I can do this well enough
+I will
+I must
+I get to
+The time to act is now, the present moment
+I have the opportunity (of a lifetime)
+The conditions are good enough
+I am not waiting for perfect conditions
+Ready or not, here I come
+I’m prepared and ready enough
+
+	Date:	January 7, 2024 at 1:52:20 PM CST
+
+# Lots of intellectual arrogance
+Listening to podcasts and reading books I am liable to minimize other’s insights and think that I have the exclusive claim to life changing truth. Forgive me lord and help me to joyfully receive from every human being I interact with whether in person or in a medium.
+
+	Date:	January 7, 2024 at 2:20:12 PM CST
+People are always doing the best they can
+At the level of consciousness they’re at
+
+	Date:	January 8, 2024 at 2:27:36 AM CST
+
+# Those words are interesting but they’re not reality
+
+My quote that came in the middle of the night
+
+Or those words are pretty, but...
+
+	Date:	January 17, 2024 at 4:15:38 AM CST
+Do you want to forgo your dreams
+Because your afraid of a little pain in the present
+
+If you prioritize a little pleasure in the present then you will end up with a lot of pain in the future, but if you prioritize a little pain in the present, you will end up with a lot of pleasure.
+
+	Date:	January 18, 2024 at 7:09:55 PM CST
+Tackling scary goals increases our sense of agency
+Tackle the scariest first or the one that will provide the most benefit
+Or tackle the least scary first like a debt snowball?
+
+Perfect love drives out fear
+Overcoming fears is a good way to prove our belovedness.  Fear has to do with punishment, separation and isolation. When we overcome a fear we remove one more objection to our belovedness.  When we are beloved we are fearless.  This is how the early Christian martyrs faced death with joy.  And as the years progressed further from the perfect love of Christ, the fearfulness returned and Christian’s became fearful of resisting oppressive regimes.
+Read book about woman that overcame 100 top fears and discover if she began to feel more positively about herself.
+
+List all the benefits of of each scary goal and then the rational worst thing that could happen
+
+	Date:	January 18, 2024 at 7:15:48 PM CST
+
+# Eat your veggies first
+Do the hardest thing first
+Research science of eating vegetables first
+Eating eat veggies when you have the most appetite that is when they taste the best versus trying to eat veggies after you are full on HPFs
+Being late all the time is a symptom of prioritizing what pleasurable over what is necessary, or simply having more to do than you have time for.
+
+Timelines
+Morning routine
+‘Do nonnegotiables first make your bed, take your shower and get dressed have your breakfast
+Problem of procrastination
+
+What I wrote doesn’t have to be original, just useful or entertaining
+
+So highest priority tasks first may seem self evident but often we don’t do this
+
+	Date:	January 19, 2024 at 12:07:27 PM CSt
+When I come into my power
+How do I keep myself from being unfaithful and taking advantage of someone.
+When you are fearless, it may be easier to violate other’s boundaries.
+At the same time the more you love others unconditionally, the more conscience you have
+Power without love is always transgressive
+There is no love without power because love is inherently powerful.  The nature of love is to produce growth in self and others
+
+	Date:	January 31, 2024 at 8:02:18 AM CST
+
+Transformation
+The function of your mind is to create coherence between your beliefs and your reality
+Bruce Lipton
+	Date:	February 9, 2024 at 3:07:05 PM CST
+
+Mood is down
+Today and Tuesday I called in sick because I could not motivate myself to get out of bed.  This is a dangerous pattern to develop.
+I also dread doing dishes every day and they piled up high.  Today since I had the day off, I finally did the dishes.
+I dread going to work, I feel intimidated and overwhelmed by my sculpture project at work.  I don’t feel like I’m exercising any creativity, initiative or challenge.  I don’t feel sad but more shell shocked.  I look depressed but nothing is interesting or exciting.
+
+	Date:	February 10, 2024 at 12:03:21 PM CSt
+Had a realization in my way home that We are not born knowing we are loved.  Knowing we are loved requires loving relationships, usually from our biological parents.
+
+We learn that we are loved by forming loving relationships, overcoming our fears
+
+Going to toastmasters was an exercise in faith and courage.  I know now that I am done being led by my fears.  Instead I am asking what does love require of me.
+
+	Date:	February 15, 2024 at 3:47:17 AM CST
+Jesus help me to truly see people.  May no one ever be invisible to me.  Give me deep compassion and love for everyone I see and interact with.
+
+	Date:	February 15, 2024 at 6:55:23 AM CST
+The happiness is gone
+Now it’s just a grind
+CK
+
+I thought the happiness is just beginning
+	Date:	February 16, 2024 at 4:04:03 AM CST
+No more spacing out
+Past three days I’ve been catching myself when I spaced out and bringing my attention back to the moment.
+I have been more decisive and action oriented.
+Early this morning I had to use the bathroom. Instead of feeling indecisively in bed, I used the five second rule and immediately got out of bed. Later, I felt too warm so without deliberation I I took my shirt off. Last night, I felt itchy. I would usually waver about using lotion for ten minute’s because it takes too long and is uncomfortable.  This time I immediately applied lotion and was not itchy in bed. I am doing dishes at an accelerated pace and fitting them in in small gaps of time instead of waiting to have a large block of time to do them. The kitchen has been clean for three days. Last night I also hung up all my work pants without being asked.
+At work I am not lollygagging.  I am working faster and more efficiently and not taking as many pauses in my work.
+Not not doing something just because it’s uncomfortable.
+
+As I increase my pace at work I need to increase my attention to detail.  This morning I picked up for laundry off the bathroom floor and put it in the hamper. When I finished putting in my clothes I realized I had missed a dirty T-shirt.
+
+	Date:	February 16, 2024 at 2:02:13 PM CST
+Lunch with forestry
+Today Jackie and ck were on pto so I was going to have to eat lunch alone.  I decided I didn’t want to so I went down to forestry to ask if they minded if I joined them.  I saw Patrick and asked him and he energetically told me to join Phil and him.  I would normally be afraid to “butt in” to their break time or fear feeling like I didn’t belong but I am no longer being guided by my fears so I confidently did it.  I am pursuing what I want regardless of whether or not I might have been afraid to do it in the past
+
+	Date:	February 19, 2024 at 4:28:13 AM CST
+	Weather:	23°F Mostly Cloudy
+	Location:	1435 Robinwood Dr, Aurora, Illinois, United States
+# Lord help me to keep my word to you
+And to myself.  I want to (not want to try as I was about to write) to wait 45 minutes before I eat breakfast or drink caffeine as per Andrew  huberman’s advice. To keep your word to yourself is to love yourself.  I have been an abject failure at doing this but now I am changing.  I love you lord thank you for healing me.
+
+	Date:	February 20, 2024 at 4:41:20 AM CST
+I’ve been so indecisive even in the little things.  Should I read the Bible, pray or meditate.  If I read the Bible where should I start? No maybe here instead, zoned out, at a loss.  Lord make me an incredibly decisive person.  Thank you lord.
+
+	Date:	February 26, 2024 at 5:15:13 AM CST
+
+Lord help me to remember my future, to experience feelings thoughts and emotions in the present that I will feel in the future as I accomplish the goals and dreams you set before me.
+
+Lord give me the courage to take the actions that love requires today
+Give me patience, compassion and understanding for everyone I interact with today.  Teach me to fear no man.
+
+	Date:	March 3, 2024 at 4:24:42 AM CST
+# A year of growth
+Last night during gratitudes I told Dawn I was grateful for my recent growth and confidence--connecting with strangers, overcoming fears, joining toastmasters and having work pay for it (letting west alliance know that today is my last day). I told her that I believe that 2024 will be one of my most growth filled years ever, thank you lord!
+Yesterday I prayed that this year I would access the depth of God’s love for me and for others.  I prayed that I would become known as a trophy of his grace.
+
+Lord please release me from my critical spirit.  Yesterday at Andrew’s game I was judgy toward the overweight player who was the least skilled on the team.  Lord let my response be compassion toward “weaker” individuals. Thank you lord!
+
+Lord as I study Romans, let me not be as concerned about seeing what has never been seen, but rather what has always been seen--your timeless truths.
+
+“Love is something, if you give it away, you’ll end up having more!” Song lyrics
+
+If I want it I’ll ask for it!
+
+	Date:	March 4, 2024 at 4:45:07 AM CST
+# Get curious
+If something is out of place, sounds funny, smells bad or send unusual in an anyway, don’t just overlook it, get curious.  The instant pot was really noisy last night. I heard it but then I tuned it out. After a couple of minutes Dawn said from the other room, the lid is not on in the instant pot, and sure enough the lid was only closed half of the way.  As soon as I locked it the pressure indicator immediately popped up.
+
+There’s always enough time, there’s always enough.
+This morning I got a note from Dawn that mom want me to come over before work to move the chair.  I felt really annoyed because I’m very protective of my early morning.  I felt like I idiot have enough time.  But while my breakfast was heating in the microwave, I did my push-ups and sit-ups . I finished my work out quickly.
+
+This morning I prayed that I would have an experience or vision of God and grasp how deeply he loves me.
+I prayed for Rob and Stacy that they would have an encounter with you that draws their hearts back to you.  I prayed that you would bring a strong Christian couple into their lives that would set them an example of intellectual rigor and strong faith.
+
+Love and hurry are incompatible
+Jesus never hurried
+Step by deliberate step he pursued the cross.
+God is love
+
+I’m so grateful for the change you are producing in my life
+Today at team lunch I was very funny and my coworkers would riff on my jokes.  I asked lots of questions and kept the conversation going except for some uncomfortable lulls.
+I have been very disciplined with my eating only eating when I’m hungry, not eating snacks, not being driven by my physical appetite, I’m not eating Candy or sweets at outreach or work.
+I’ve been doing tasks when I think about them rather than waiting till the last minute.  I’ve been asking what’s the best use of my time right now? Sunday before church I cleaned the bathroom without having to be asked.
+Instead of ghosting Korean west alliance, I told them a week in advance that I would be leaving.  They gave me two bags of gifts and $230 yesterday.
+I saw Liz at Aldi today and I stopped to talk to her instead of avoiding her.  I am dropping things off at goodwill as soon as I get them instead of allowing them to clutter the house.  I replace my taillight instead of leaving it broken.  I have been more friendly to everyone.
+I’m cleaning up after myself.  I have kept the kitchen clean for about two weeks.
+I have been asking for what I want and expressing my preferences.  I have not allowed myself to be intimidated by others
+
+	Date:	March 5, 2024 at 3:40:36 AM CST
+I pray that I judge no one
+I pray that no one will offend me regardless of how offensive their behavior is
+I pray that I love others without condition
+I pray that I will see you, myself and others through your eyes
+I pray that I never think of myself as better or worse than any other.
+I pray for peace among all peoples of the earth
+I pray for an end to hunger
+I pray that you will use my message to feed the spiritual hunger of others
+I pray that you will use me to bring hope to the hopeless, love to the loveless, joy to the mourning, faith to the fearful, an attentive ear to the lonely.
+
+Grant me your favor and give me joy.   Grant me courage that is stronger than my fear, grant me the courage to follow where you lead, to the cross, grant me an overflowing heart of love, grant me the sensitivity to hear and obey your voice.  Give me courage in spite of pain and loss, give me hope that you will fulfill all your promises.   Let me fear no person but let me be filled with the fear of the lord.
+
+	Date:	March 6, 2024 at 4:34:11 AM CST
+	Weather:	39°F Cloudy
+	Location:	1435 Robinwood Dr, Aurora, Illinois, United States
+
+# Yesterday Jackie said
+Yes you will when she asked me if I was helping with the tarps and told her no.  I wanted to work on my sculptures.  At first I was offended and wanted to say something to Jamie.  I had done a whole day with the tarps a day before and Jamie just asked me to help out with cleanup a half of each day.  But then I remembered that she is my supervisor so I adjusted my attitude.  I want to respect authority in my life.  I decided to do my work happily and put the situation behind me.  I did not stew or sulk over it,  I did not cop an attitude with Jackie all day.  I did not passive aggressively work slowly or poorly.  I maintained my work standards and honored my conscience.  Thank you lord!
+
+I feel alarm when disc D’s rustle in the background or come into the room (including Dawn). Lord help me to not be threatened by anyone.  I pray that everyone who enters my space I would receive as receiving Jesus.
+
+Did not work out today because my muscles are sore.  I haven’t taken a break in a couple weeks and I want a recovery day.  I felt a little guilty about it.  I have the false belief that a “real man” pushes without ever taking a break.
+
+Whena large proportion of the church truly encounters the living Christ and experiences his unconditional love sans the power to love others unconditionally, the church will once more look like the early church.  Christians will sacrifice to take care of each other and will rejoice in worship together.  It will happen when the church is actively persecuted and probably when Christians are physically harmed.  This will weed out the lukewarm who are unable to practice the sacrificial love of Christ.  Then the church will have the intoxicating aroma of Jesus and many will be drawn in.  Jesus will reveal himself by many miracles and healing.
+	Date:	March 7, 2024 at 4:08:10 AM CST
+	Weather:	35°F Mostly Cloudy
+	Location:	1435 Robinwood Dr, Aurora, Illinois, United States
+
+# Nighttime dreams
+I was walking down an alley and I caught a glimpse of a black leopard behind me.  I slowly continued and when I got to the end of the alley, I felt it breathing behind me.  I slowly turned around and it was a friendly, black dog.
+(My fear was worse than the reality 6/13/26)
+
+	Date:	March 8, 2024 at 5:01:33 AM CST
+
+# Prayers for the world
+Peace among nations
+Russia will withdraw from Ukraine
+Putin will be deposed from power
+The church will be purified and become the leading agent of social cohesion in the world, the leading agent of social change and progress.
+That the church would have passion for God knowing his unconditional love an and sharing it abroad.  That the church would be bold in testifying to the gospel.
+I pray for an end to world hunger and clean water for everyone
+I pray that the world’s nations will take seriously their stewardship of the earth.
+I pray that your church will become activated in the spiritual gifts.  I pray that the church will take leadership in every human domain, business development, women’s equality, literacy, art, music
+
+	Date:	March 9, 2024 at 4:44:44 AM CST
+Courageous goals
+Free positive affirmations booth.  The more I think about this, the more eager I become.  Can I look into other people’s eyes without shame.   This does not work otherwise.
+What affirmation do you most need to hear?
+Contact northern Illinois food bank
+
+	Date:	March 11, 2024 at 4:54:14 AM CDT
+As I was driving home today, I realized that limiting my growth limits the growth of others who may be inspired by my actions.  When I grow, I set a model and an example for my wife.  She will not reach her full potential if i do not reach mine.  She will become fully free when I do.
+
+	Date:	March 12, 2024 at 4:50:48 AM CDT
+
+	Date:	March 13, 2024 at 8:16:57 AM CDT
+
+Amorphous emotional pain
+ It’s 3:40 pm and I have such an emotional need to eat right now.  I am not hungry but I am craving rich and sweet foods.  Past ten days I’ve been experiencing more intense need to emotionally eat.  I haven’t been able to stop eating when I’m 80% full.  I don’t know what the emotional pain is that I’m experiencing.  Dawn suggested it’s anxiety about the shoe dropping because everything is going so well.
+I said that I’m okay without knowing.  Brooke talks about the value of being able to feel your negative emotions without buffering.  Learning to keep moving forward when you are in pain is a key skill for success of any kind.  Jesus says take up your cross daily and follow me.
+I hurt my back helping Jamie move flower pots.  When he asked if I was knee deep in my sculpture he said I could say yes, but I said no I can help. When I stained my back I did not tell him.  Later in the afternoon Jackie asked if I would get a dolly to help move the pots.  I said yes even though my back is really sore.  I can improve this.  I will learn to ask for what I need AND reject what I don’t need.  I am not beating myself up about this.  I know God turns mourning into dancing and he returns the wasted years.
+
+	Date:	March 14, 2024 at 4:36:07 AM CDT
+Last night I signed up for a couple of shifts at northern Illinois food bank.   I am making great progress on my 2024 goals.  Thank you lord for strengthening me to become more like you which means also becoming more like me,
+
+	Date:	March 14, 2024 at 4:59:44 AM CDT
+Seminary
+This past week I’ve been thinking how I would like to go to seminary to grow in my biblical knowledge and to develop my preaching ability.  I have no idea how I would pay for it and it seems really impractical.  But it seems like the most important knowledge in the world: who is God, who are we, who am I?
+
+	Date:	March 14, 2024 at 6:41:42 AM CDT
+# What is discipleship
+Discipleship is preparation for mission
+The main qualification for a servant worker is that they are confident in God’s love for them.  Otherwise they will take and steal from their mission field instead of selflessly giving the love of Christ.
+They will steal honor, and commendation, power and influence, approval, the praise of man
+Biblical literacy, oral or written
+Efficacy in prayer
+Healthy relationships
+Authority,  Submission to authority/ obedience
+Growing in spiritual gifts
+Service, servanthood,  and generosity
+Self care
+Evangelism
+Psychological health
+Healing from trauma
+Leadership
+discerning God’s voice
+The fear of the lord
+Wisdom
+Natural gifting
+Tithing and giving
+Joyful and abundant marriage
+Godly parenting
+Discipleship and discipling
+Godly character
+Work and work ethic
+
+	Date:	March 14, 2024 at 9:42:27 AM CDT
+	Location:	Butterfield Rd, West Chicago, Illinois, United States
+
+# Abraham believed God
+And it was accounted to him as righteousness
+Abraham believed God’s impossible promise
+He believed that he would become the father of many nations even though he was 100 and Sarah was barren
+He believed that God is the person of ultimate consequence
+Gods speaks to those who need to hear him and who obey his voice
+If God is not speaking to you it’s because you don’t want to hear what he has to say to you.  Return back to the last thing he said to you and obey it fully
+
+	Date:	March 15, 2024 at 4:37:50 AM CDT
+# Help me to know your love
+And help me to love you and demonstrate it by loving my neighbor.  Your love sustains the universe you bind every particle together creating a space that humans can thrive as your image . Give me gratitude for and to you and for a universe of blessing and a world of humanity.  May every human be my friend and brother
+
+	Date:	March 15, 2024 at 12:05:51 PM CDT
+# Prayers for community
+Soul friend
+it will not be clay until his faith grows?
+Discipler
+Disciplee/s
+12 or more core friends group
+Interfaith group of 50 or more locally and a million or more internationally
+House church network of one million or more
+Lord I pray that you would bring Rob and Stacy back home.  Give them a new revelation of the depth of your love and the power of your resurrection
+Pray for a positivity bias in me and in the church!
+
+	Date:	March 16, 2024 at 7:27:05 AM CDT
+	Weather:	39°F Clear
+	Location:	1435 Robinwood Dr, Aurora, Illinois, United States
+
+Lord teach me how to pray
+Teach me God to be in constant communications with you
+Teach me to discern your voice
+Give me the faith and courage to obey
+Give me faith that you answer prayers of supplication
+Give me faith that you can do the impossible
+Show me that I can pour out my heart to you and you are loving and you will comfort me.
+Show me the greater conversation among all of your people throughout time.
+
+	Date:	March 16, 2024 at 7:41:30 AM CDT
+# Overcoming the control food has in my life
+Yesterday I brought an apple for lunch.  I was not hungry for the apple but at the end of the day I was so strongly tempted to eat even though I was still not hungry.  After fiddling with it for a while I through it into my bag.  Last night Dawn stopped at Sonic after Emily’s play to get mozzarella sticks.  She then offered me a mozzarella stick and I was tempted but I remembered that I had plenty of food at home that was vegan and whole food.  I brushed off the temptation fairly easily.  Over my life food has been my master.  I have had very little self control over it.  If I had a day off, I might stand in front of the fridge 10 or 12 times,  make multiple cups of tea and get very little work done.  I had almost no willpower against sugary foods and I definitely did not restrict myself to a maximum dosage.
+I used food to stuff my feelings of loneliness, worthlessness and anxiety.  I am choosing now to feel these feelings even if I never understand what is causing them.  I am already making improvements and it feels empowering.
+I’ve always made eating my top priority and lived for each meal or eating opportunity.
+Lord thank you for the progress you are making in me.
+
+	Date:	March 16, 2024 at 10:14:41 AM CDT
+# The crux of faith
+God is the person of ultimate consequence.  He is the greatest authority in the universe.
+He is immutable, omniscient, omnipotent, omnipresent
+Will we submit to him or will we choose to elevate ourselves to the position of God.
+God is the source of everything good in the world.  If we choose to turn from God than we are denying ourselves access to the infinite resources of God.
+
+A major cause of faithlessness is the problem of evil which is no problem at all.  Humanity introduced evil in the world when we decided to be arbiters of what is good and evil instead of aligning ourselves to reality which is established by God.  We have the false belief that other people are more evil than we are and we determine that we should have special treatment, that we should be immune to suffering and loss. There are no good people only people that may do good and will always do evil.  When sin is conquered the good will be those who submit to God.
+As a sign of our submission to God, we are called to submit to every earthly authority.  If we cannot submit to earthly authority that we can see, we will be unable to submit to God whom we cannot see.
+
+Jesus Christ modeled submission by submitting to his father and to earthly authorities.  His obedience to the cross was the ultimate sacrifice that God was waiting for.  Jesus to within himself the condemnation and sting of sin and death that spared us from God.  We can now approach the throne of Grace and be righteous in his eyes.  Believing in Jesus is the first act of faith that makes us righteous in the bite of God.
+
+We learn obedience through suffering
+
+Suffering is not proof that God doesn’t exist or doesn’t love us,  it is proof of the condition of sin and brokenness in ourselves and in the world.  It is actually proof that God loves us because he uses it to make us stronger and to show his comfort and love to us, he uses it to give us compassion for others, he uses it to test our obedience, he uses it to demonstrate to us the utter corruption of sin, he uses it to purify us
+
+Your greatest ministry will come out of your deepest pain,
+Adversity grows community
+Our weakness is our witness
+The greatest witness of Jesus’s love was not hits teaching or his miracles and ministry.  It was his chosen suffering
+Rick Warren
+
+	Date:	March 16, 2024 at 12:10:24 PM CDT
+	Erwin McManus
+You will live a life of risk or a life of regret
+
+	Date:	March 16, 2024 at 3:32:49 PM CDT
+Forgive me
+For my selfish ambition and pride
+I think my insight is more profound than your word
+The praise of man
+
+	Date:	March 17, 2024 at 4:26:11 AM CDT
+
+When the cure is worse than the disease
+Iatrogenic illness
+Doctors are the third leading cause of mortality

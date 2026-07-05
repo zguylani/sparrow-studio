@@ -1,0 +1,4 @@
+Ready.
+Selected: C:\Users\DawnF\OneDrive\Documents\Personal Development\Journal 12-31-22 to 3-17-24.docx
+Creating prompt files...
+Created 4 prompt files in: C:\Users\DawnF\OneDrive\Documents\Personal Development\journal_publishing_system_v2_real\prompts_to_paste

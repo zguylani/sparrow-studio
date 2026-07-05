@@ -1,0 +1,125 @@
+You are helping create Zuba's hierarchical journal publishing system.
+
+CRITICAL RULES:
+- Review every sentence in the supplied chunk.
+- Preserve wording as close to verbatim as possible.
+- Correct only spelling, punctuation, grammar, and obvious autofill/autocorrect/dictation/AI input errors.
+- Do not polish, summarize, theologize, censor, or rewrite the author's voice.
+- Extract complete thoughts at every natural level. A complete thought may be a whole journal entry, an essay/reflection, a paragraph, or one sentence.
+- Preserve hierarchy ALWAYS, not optionally.
+- Create a Journal entry item for each dated journal entry that contains usable intellectual, spiritual, narrative, or publication material.
+- If a journal entry contains a sustained reflection or essay, create an Essay item under the Journal entry.
+- Create Paragraph items for reusable paragraphs under the Essay or Journal entry.
+- Create One-liner, Principle/framework, Story/illustration, Definition, Analogy, Question, Book idea, Sermon idea, Research idea, and Personal testimony items under their most specific parent.
+- If a paragraph has several usable sentences, extract the paragraph AND the usable sentences inside it.
+- Exclude mundane logistical entries unless they contain a usable phrase, story, insight, principle, image, or book material.
+- Return ONLY valid JSON. No markdown. No explanation.
+
+RETURN FORMAT:
+Return a JSON array of objects. Every object must use exactly these keys:
+item_id, parent_id, chunk_id, source_date, source_heading, level, category, rating, themes, keywords, corrected_text, notes, possible_book, journal_entry_id, essay_id, paragraph_id, sequence
+
+FIELD RULES:
+- item_id: Use the exact ID prefixes below with sequential numbering inside this chunk.
+  Journal entry: Journal_12_31_22_to_3_17_24_0002-JE001
+  Essay: Journal_12_31_22_to_3_17_24_0002-E001
+  Paragraph: Journal_12_31_22_to_3_17_24_0002-P001
+  One-liner/quote: Journal_12_31_22_to_3_17_24_0002-Q001
+  Principle/framework: Journal_12_31_22_to_3_17_24_0002-PR001
+  Story/illustration: Journal_12_31_22_to_3_17_24_0002-S001
+  Definition: Journal_12_31_22_to_3_17_24_0002-D001
+  Book idea: Journal_12_31_22_to_3_17_24_0002-B001
+  Analogy: Journal_12_31_22_to_3_17_24_0002-A001
+  Sermon idea: Journal_12_31_22_to_3_17_24_0002-N001
+  Research idea: Journal_12_31_22_to_3_17_24_0002-R001
+  Question: Journal_12_31_22_to_3_17_24_0002-X001
+  Personal testimony: Journal_12_31_22_to_3_17_24_0002-T001
+- parent_id: blank if no parent. Otherwise use the item_id of the parent item.
+- chunk_id: always Journal_12_31_22_to_3_17_24_0002
+- source_date: date of the journal entry if present.
+- source_heading: heading if present.
+- level: one of Journal entry, Essay, Paragraph, One-liner, Principle/framework, Story/illustration, Definition, Book idea, Analogy, Sermon idea, Research idea, Question, Personal testimony.
+- category: one or more of Publishable quote, Book idea, Principle/framework, Story/illustration, Definition, Sermon idea, Analogy, Question, Personal testimony, Research idea, Essay/reflection, Paragraph.
+- rating: 1-10 for usefulness/publication potential.
+- themes: semicolon-separated themes.
+- keywords: semicolon-separated keywords.
+- corrected_text: the extracted text, lightly corrected only by the rules above.
+- notes: brief note about context, parent/child relationship, uncertainty, or why included.
+- possible_book: possible book/project fit, such as Belovedness, Grace, Wisdom of Sparrow, Leadership, Trauma Healing, Sustainability, Sermons, Articles, Unknown.
+- journal_entry_id: item_id of the parent Journal entry if applicable.
+- essay_id: item_id of the parent Essay if applicable.
+- paragraph_id: item_id of the parent Paragraph if applicable.
+- sequence: integer sequence number preserving the order in the chunk.
+
+HIERARCHY REQUIREMENTS:
+For a dated entry with heading and multiple paragraphs, create:
+1. Journal entry item for the whole dated entry.
+2. Essay item if it contains a sustained reflection.
+3. Paragraph items for reusable paragraphs.
+4. One-liners/principles/questions/etc. inside the paragraphs.
+
+Do NOT choose only the best level. Extract all usable levels.
+
+CHUNK_ID: Journal_12_31_22_to_3_17_24_0002
+
+JOURNAL CHUNK:
+Date:	March 12, 2023 at 3:51:10 AM CDT
+
+# Motion journal
+3/12/23
+Small carrot with peel half of a Vegan dog quarter applE with core handful of walnuts
+Stool is darker redder firmer thicker denser than past month of diet change
+ About hour and a half late at 7:30 I had a can of mustard sardines and a tbs and a half of olive oil good brain food
+
+Dinner 1/2 grilled cheese with sliced 1/2 cheddar, dill dip, best I’ve ever had and 3 slices apple.  Light dinner because are heavy meal at 2:30 2/3 of one of my Korean leftovers
+Ricegreen onions kimchi veg and fish pancakes gelatin, pear strawberry
+
+3/14/23
+Had tbs olive oil, i/2 tsp sriracha 8 peanuts (did not taste good to me too salty too starchy), 3 apple slices, sixth of an avocado 1 stevia pecan turtle. Freedoms chewing gum
+Hour later tbs olive olive, tsp cider vinegar, I spice cookie
+I am hungry and stomach talking.
+I’m going to have a piece of bread 2 heals plus tbs pb force myself to eat it for muscle production and walk it off at the hospital
+
+	Date:	March 12, 2023 at 7:38:19 AM CDT
+
+My theology
+Father son and Holy Spirit
+We are part of the Trinity
+The shin or the daughter the mother or the father we are always one or the other but always buying us all is the Father god who recaída themself as father and often as mother
+
+	Date:	March 13, 2023 at 5:17:59 PM CDT
+
+# Songs
+3/13/23
+Eye of the storm
+The blessing (live) elevation worship
+3/16/23
+Heaven is a place on earth Belinda Carlisle heard yesterday at the mattress store
+Time after time
+
+We belong Pat benatar
+Like a prayer Madonna
+I wanna dance with sobering
+
+	Date:	March 14, 2023 at 8:19:11 AM CDT
+
+Clothing
+Dc
+All white tennis shoes
+Very long t shirts
+
+	Date:	March 14, 2023 at 8:29:19 AM CDT
+
+Mary the phlebotomist
+Had great rapport
+I praised her for her skill and said you list have done this 100 times-no thousand times.  She said you’re my first patient and we both laughed out loud
+
+	Date:	March 15, 2023 at 4:37:34 AM CDT
+
+# Keith
+Met Keith 3-13-23 In a session at PHP about feelings.  Keith looks about 60 Wright a round face broad jovial smile and a bristly Hoary look to him .  I can\{t remember what prompted me to introduce myself to him butI gab r híñeme a gift bump and said i\{m mattthje3w what is ur name\_ HJe said Keith.  I aske him what what d utopía dop\_. He said nothing.  We’ll act just thrust i work for a geingofrhood cafe with slot machines.I a¿id that s s¿cool there j¿one just down the street from em )Nancy’s= but I could not member he than en Mae of it.  He said there’s atyakllky 15 off then in sandwisch.  I said fo the same comñpany\_ He said no ifff co,. I said well that ¿s really cool. He said thee towel kinds of role great. Gable those that gánenle a s financial plan and those that Chablé just for fun,  Tighe one w for a fin plan álalas leave angry. And I said the one w ho pay for fn don’t care if i Jose money. I never had prob with gab but i had prob wish scratch off cas, I could stop buy grill i one,\{\{
+Keith aid he applied folder dis setp11 for not enrolled yet after 5no,s.I said how she making it.He said the kindness ofHIS LANDLOD WHO LET HINM DO ODDJOB GTO PAYHRNHADNTG PAIFRENDSINC APRIL.,Younmust e so hateful.  ¿It Ake s me feel like a pos.Yourr not a oso ¿!Ialways felllike a pone.I told him that gd forgives¿¿¿¿¿¿loves edveroe unción DiOrio Kuly includ hi. e said donñ bel thatanynore ge yup Cathy between can elanynore... Ishared my brokennesshistry briefl WTH hogans h¿nodded his head affair.mi took his dad and said you are 100%....trars welledinbothusassaidand gov¿d love you never forget I love ¿¿¿¿¿too.good to be with you le\_\_--i.                                                                             !
+Had a very rodface but blond grat brist.
+
+Translation Gemini:
+Deciphered Journal Entry

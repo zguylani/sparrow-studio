@@ -1,0 +1,655 @@
+You are helping create Zuba's hierarchical journal publishing system.
+
+CRITICAL RULES:
+- Review every sentence in the supplied chunk.
+- Preserve wording as close to verbatim as possible.
+- Correct only spelling, punctuation, grammar, and obvious autofill/autocorrect/dictation/AI input errors.
+- Do not polish, summarize, theologize, censor, or rewrite the author's voice.
+- Extract complete thoughts at every natural level. A complete thought may be a whole journal entry, an essay/reflection, a paragraph, or one sentence.
+- Preserve hierarchy ALWAYS, not optionally.
+- Create a Journal entry item for each dated journal entry that contains usable intellectual, spiritual, narrative, or publication material.
+- If a journal entry contains a sustained reflection or essay, create an Essay item under the Journal entry.
+- Create Paragraph items for reusable paragraphs under the Essay or Journal entry.
+- Create One-liner, Principle/framework, Story/illustration, Definition, Analogy, Question, Book idea, Sermon idea, Research idea, and Personal testimony items under their most specific parent.
+- If a paragraph has several usable sentences, extract the paragraph AND the usable sentences inside it.
+- Exclude mundane logistical entries unless they contain a usable phrase, story, insight, principle, image, or book material.
+- Return ONLY valid JSON. No markdown. No explanation.
+
+RETURN FORMAT:
+Return a JSON array of objects. Every object must use exactly these keys:
+item_id, parent_id, chunk_id, source_date, source_heading, level, category, rating, themes, keywords, corrected_text, notes, possible_book, journal_entry_id, essay_id, paragraph_id, sequence
+
+FIELD RULES:
+- item_id: Use the exact ID prefixes below with sequential numbering inside this chunk.
+  Journal entry: Journal_12_31_22_to_3_17_24_0001-JE001
+  Essay: Journal_12_31_22_to_3_17_24_0001-E001
+  Paragraph: Journal_12_31_22_to_3_17_24_0001-P001
+  One-liner/quote: Journal_12_31_22_to_3_17_24_0001-Q001
+  Principle/framework: Journal_12_31_22_to_3_17_24_0001-PR001
+  Story/illustration: Journal_12_31_22_to_3_17_24_0001-S001
+  Definition: Journal_12_31_22_to_3_17_24_0001-D001
+  Book idea: Journal_12_31_22_to_3_17_24_0001-B001
+  Analogy: Journal_12_31_22_to_3_17_24_0001-A001
+  Sermon idea: Journal_12_31_22_to_3_17_24_0001-N001
+  Research idea: Journal_12_31_22_to_3_17_24_0001-R001
+  Question: Journal_12_31_22_to_3_17_24_0001-X001
+  Personal testimony: Journal_12_31_22_to_3_17_24_0001-T001
+- parent_id: blank if no parent. Otherwise use the item_id of the parent item.
+- chunk_id: always Journal_12_31_22_to_3_17_24_0001
+- source_date: date of the journal entry if present.
+- source_heading: heading if present.
+- level: one of Journal entry, Essay, Paragraph, One-liner, Principle/framework, Story/illustration, Definition, Book idea, Analogy, Sermon idea, Research idea, Question, Personal testimony.
+- category: one or more of Publishable quote, Book idea, Principle/framework, Story/illustration, Definition, Sermon idea, Analogy, Question, Personal testimony, Research idea, Essay/reflection, Paragraph.
+- rating: 1-10 for usefulness/publication potential.
+- themes: semicolon-separated themes.
+- keywords: semicolon-separated keywords.
+- corrected_text: the extracted text, lightly corrected only by the rules above.
+- notes: brief note about context, parent/child relationship, uncertainty, or why included.
+- possible_book: possible book/project fit, such as Belovedness, Grace, Wisdom of Sparrow, Leadership, Trauma Healing, Sustainability, Sermons, Articles, Unknown.
+- journal_entry_id: item_id of the parent Journal entry if applicable.
+- essay_id: item_id of the parent Essay if applicable.
+- paragraph_id: item_id of the parent Paragraph if applicable.
+- sequence: integer sequence number preserving the order in the chunk.
+
+HIERARCHY REQUIREMENTS:
+For a dated entry with heading and multiple paragraphs, create:
+1. Journal entry item for the whole dated entry.
+2. Essay item if it contains a sustained reflection.
+3. Paragraph items for reusable paragraphs.
+4. One-liners/principles/questions/etc. inside the paragraphs.
+
+Do NOT choose only the best level. Extract all usable levels.
+
+CHUNK_ID: Journal_12_31_22_to_3_17_24_0001
+
+JOURNAL CHUNK:
+Date:	December 31, 2022 at 10:12:32 AM CST
+
+# What made Jesus divine?
+That he considered no one his enemy and that he loved unconditionally.  He loved those who tortured and killer him.  He was not proven divine by his corporal and physical power but by his spiritual power.  Nobody could break his ability to love them.  He lived in radical acceptance of the way people and things and the universe are and yet he rejected the notion that things will never change. He believed in change one life at a time.
+How divine are Christians living.  Do we consider no one an enemy.  Do we love unconditionally? Can no one break our ability to love them.  As a Christian it is very humbling to realize that few Christians live up to Jesus’s teachings.  As a matter of fact the living person that i consider most like Christ is not even an orthodox Christian if she even considers herself a Christian at all.  I will not name this person, but maybe you know her.  If I could touch the hem of her robe I know I could be healed because the light of the father’s heart is in her.  May more humans and more Christians be like her because than we would be imitating Paul as Paul imitates Christ.  And imitating Christ is the path to heaven on earth and on the earth to come.
+Any faith that submits to goodness and love submits to the father.  The faith that is most true is the faith that imitates Christ most clearly because as Paul says he is the image of the invisible God.
+Corporate Christianity has often been a very poor reflection of Christ.  Whereas Paul says I am the worst of sinners, unhealthy Christianity says, you are the worst of sinners.  Whereas unhealthy Christianity compares one human against another Paul says I compare myself to no man.  Whereas unhealthy Christianity consigns humans to heaven and hell, Paul says I stand in judgment over no man.  Healthy Christians consign no one to hell, but work as hard as they can to make sure everyone is in heaven. Whereas unhealthy Christianity decides if truth is true based on whom it comes from, Paul says
+
+And in the least healthy christianithy truth only comes from the Bible in which case most secular knowledge such as physics and psychiatry must be rejected if the person is intellectually consistent. What an impoverished world that is when God had given us a world and universe full of truth to discover
+
+	Date:	January 3, 2023 at 8:01:16 AM CST
+
+# Rules I live by
+Always tell the truth as long as you are not intentionally trying to hurt someone with it
+2/12/24
+When someone states a fact, do not state a counter fact unless they ask for your opinion.  And when you argue never make the other person your opponent.  First communicate love.  Do not use a judgmental tone or speak with a scowl on your face. Let your face soften and your words become honey.
+Me
+
+	Date:	January 9, 2023 at 1:29:35 PM CST
+
+Your  very existence is proof that you are 100% loved.  God sees you and says “I’m so glad I created you.  You are so very good and I love you!
+
+“And God saw everything that he had made, and behold, it was very good. And there was evening and there was morning, the sixth day.”
+Genesis 1:31 ESV
+
+To love someone is to desire their full, blessed existence
+To hate someone is to desire their nonexistence.
+This is why Jesus equates hatred with murder, because both attempt to end the existence of anothe, developing content and have a natural way to monetize at the end of my devel
+
+	Date:	January 13, 2023 at 3:48:44 AM CST
+
+Take time to think and let subconscious inform you
+
+	Date:	January 14, 2023 at 10:39:23 AM CST
+
+The world needs new institutions that prioritize intelligent nonjudgmental discourse,  people learning the skills of being good at being human and people that have a heart for the future of the world and humanity.
+I want to start being deliberate about my relationships.  I want to build relationships with those who want to strategically make the biggest impact possible.  If this includes past people I have known I will be thrilled.  If last people I know give me pushback then I will move on.
+I want to be able to spend 40\+ hours a week working on this and on human development and life coaching.  How can I get here the fastest?  I love my job at Cantigny but I can’t spend as much time studying, writing, speaking and having conversations as I would like. Lord give me ideas to move this process along.  Also give me patience with the process.  I have to become the person that can do these things and I am not that person yet.
+
+	Date:	January 15, 2023 at 5:12:24 AM CST
+
+If you can dream it, you can ask for it.  The worst that can happen to you is to get a no: Joe Dispenza?
+
+2/12/24
+If you give little compassion, you receive little compassion
+If you give a lot of love, you will receive a lotta love
+Me
+
+	Date:	January 23, 2023 at 12:28:18 PM CST
+
+My dysfunctional self
+Fear of failure perfectionism
+Can’t find stuff because I give up so easily
+Believe that I’m less than other people--others are better than me, matter more, more valuable more important.  Their needs are more important than mine. Believe I don’t deserve to be loved unworthy.  Other people deserve to be loved.
+
+	Date:	January 29, 2023 at 5:42:29 AM CST
+
+What i learned from my manic episode 2022
+Thoughts and emotions matter tremendously in your outcomes
+The thoughts and emotions surrounding unconditional love and acceptance feel great and are peace and joy inducing
+My mind is capable of working at least twice as fast as normal
+My memory is capable of retaining twice as much information twice as reliably
+I can love myself and others unconditionally
+I can accept every outcome joyfully as an opportunity
+
+[joy is the positive awareness of our unbreakable connection to God, the creation, humanity and or an individual human being.
+Sometimes it manifests add happiness but often it is deeper or more subtle than happiness (from finger conversation with Dawn)]
+
+	Date:	January 29, 2023 at 11:06:12 AM CST
+
+# Changes that happen when you believe that you are unconditionally loved
+You can love others unconditionally
+Memory has  improved triple x
+Driving improves
+You no longer get lost
+Brain speed increases
+You can delay gratification
+Your addictions lose power over you
+You become more self disciplined
+You become more assertive
+Your attention improves
+You remember people’s names more easily
+You remember more details from conversation’s because you become a better listener
+You cease being a perfectionist
+You are not afraid of failure
+You are more persistent toward accomplishing your goals big and small
+You become more decisive
+You don’t take things personally
+Every outcome is an opportunity
+You become fearless
+You dream more and bigger
+You set and accomplish more goals
+Your productivity skyrockets
+Your shame disappears
+You are more patient with yourself and others
+You believe in human potential and your own potential
+You become more creative
+You develop more interests
+You become more open minded
+You become more courageous
+You become physically healthier
+You experience more joy and happiness
+You become more content in your circumstances
+You live longer
+Your blood pressure goes down
+You are no longer anxious
+Your psychosomatic diseases go away
+You thrive instead of survive
+You become a positive thinker
+You become an optimist
+Your relationships improve
+You continually develop new relationships
+You never give up on yourself or others
+It is easy to say no to others
+You don’t worry about what others think about you but you learn from other people’s judgments
+You don’t fear rejection and abandonment
+You don’t take it personally if someone gets angry at you.
+You love to try new things
+You love to learn new things
+You make more friends
+You engage more with strangers
+You are a better friend-- what does better mean?
+You are a better spouse or significant other
+You take more ownership in your relationships
+You spend more time with people in your sphere of influence.
+Your sphere of influence grows
+You stop lying to yourself and others
+You are sick less frequently
+You care more about humanity and the earth
+You are more willing to do hard things--you even come to enjoy them
+Your default emotions are joy, peace, hope and love
+You become more hopeful
+You take better care of yourself
+You are always willing to ask for what you need
+You stop procrastinating
+You become less judgmental towards yourself and others
+You become a better writer because you think more clearly and you are unconcerned with anybody else’s judgements
+You experience tremendous gratitude
+You frequently and consistently express gratitude to those around you
+You see what everyone does right instead of fixating on what everyone does wrong
+You are no longer self conscious about your output, outcomes or body
+You will become a very powerful person, influential
+People will want to be around you
+You will become very attractive to others
+People will listen to what you have to say
+You will become wise beyond your years
+You will become a more objective person
+You become very curious
+Don’t ruminate about the past
+Don’t worry about the future
+Don’t obsess about what you did or didn’t say in a conversation
+Instead of complaining about problems you come up with creative solutions
+You take more ownership and leadership
+1/19/24
+Your athletic performance improves because you have greater confidence and you are not stilted be the fear of a bad performance or failure.  Winning or losing have nothing to do with your personal value and self regard.  For me I won three bags games in a row.  I was able to control a volleyball for the first time.
+2/4/23
+My libido improved
+
+2/5/34
+You are no longer concerned with what others think of you, if you look wierd of strange or crazy.  Eg me wearing a respirator with filter cartridges while I mow leaves out grass in a public garden Or do bicep curls or tricep curls with garbage bags as I take them to the dumpster at my cleaning job next to Dennys and a very busy road
+
+You will max out your biological potential in size strength, capacity, brain power
+
+	Date:	January 29, 2023 at 2:06:28 PM CST
+
+# Act like your future you
+What are main ways that I can act as if I believed that I were loved unconditionally and was worthy and beautiful
+
+Engage with coworkers.  Participate in conversations put myself into conversation circles. Get to know my coworkers better
+
+Engage with strangers be friendly with everyone. Ask sincerely how others are doing.
+
+Ask for what l need and want. Don’t tell myself no before I give someone an opportunity to tell me yes
+Ask for help
+
+Always tell the truth
+
+Don’t ruminate about the past
+Don’t worry about the future
+Have gratitude for the past and hope for the future
+
+Don’t judge myself and others
+Have compassion and empathy for myself and others
+
+Don’t be a perfectionist do good enough and get ter done
+
+	Date:	February 9, 2023 at 7:30:48 AM CST
+
+Retraining my thoughts
+2/9/23
+Morning meeting at work trying to engage 4 different people in conversation no one bites. So I feel rejected, alone.  No one is interested in me. I don’t belong.  Then I asked myself what a true thought is.
+Whether others engage with me is their issue not mine
+I can improve my work relationships by pressing into them with persistence
+I can love my coworkers unconditionally and it doesn’t matter how they behave toward me. I love this last thought.  It really feels empowering and good
+
+	Date:	February 11, 2023 at 10:23:10 AM CST
+
+# Joy is connection
+Joy is our sense of connection to source, self, others, the world and the universe
+If we are disconnected from anyone that is if there is anyone whom we cannot love than we cannot experience complete joy.  But the fewer “enemies” we have, the greater our joy.
+
+2/14/23
+I had planned to make dawns Valentine’s Day card yesterday at 4 but I ended up getting lost on my way home and having to go to 2 grocery stores.  I was leaning toward my tendency to get stressed but I reminded myself that there is always enough time to get what needs to be done done. True sometimes we need to move with a sense of urgency and efficiency but we all have enough time no less no more.  I remained almost entirely at peace.
+
+2/28/23
+ourselves.  I had the best day of my life and tomorrow will be even better!
+After putting up pictures I totally cleaned everything up and put everything away! I’ve never done that before!
+
+	Date:	February 15, 2023 at 8:17:32 AM CST
+
+You can only live your true potential if your willing to intentionally feel pain
+
+On errands
+True confessions: I am a judgmental person.  Every time I see someone I instantly assess their attractiveness, their intelligence, their coolness, if they’re good or bad and so on.  I base their value on these judgments.  I judge myself too.  And sometimes worse than I judge others.  I want to love myself and others like God does without conditions
+
+When you love someone exactly as they presently are with no desire or intention to change them, you teach them how to love themselves unconditionally
+Ironically as they learn to love themselves unconditionally you will see them becoming their best self
+But you can never make that future change be your desire and condition by which you love them or you won’t truly love them in the present.  You will be in love with your own minds projection of who they might become.
+
+	Date:	February 18, 2023 at 9:58:13 AM CST
+
+# Unconditional love is a myth
+It is true that God love us unconditionally but we will never find a human partner who is not ambivalent about us in some way.  But we can be in a relationship with someone who wants to learn how to love you like God loves you, unconditionally.
+
+	Date:	February 19, 2023 at 7:28:51 PM CST
+
+# LGBTQ
+I don’t believe I can hold someone who doesn’t share my values to my own.  If I have permission I can hold them to their own values.  But judgment begins with the house of God--not with unbelievers. It’s not up to me to tell them what I think is sin or righteousness what is good or bad
+How had the church demonstrated that queer people are unconditionally loved by god and infinitely valuable.  Can you do that when two people of the same gender want what most heterosexuals want--a committed life partner.
+In the church why do we overlook divorce as sin but hyperfixate on what people do in bed as sin. Jesus focused on social inequity not on the sins of the bedroom.  And in our society queer people are treated unjustly.  Jesus would have sided with the queer.
+
+3/1/23
+I believe that queerness is a matter of conscience that we’ve blown out of proportion e should not be dividing the church over it. Jesus never made queerness and  issue or brought attention to it in his entire ministry.  He especially did not instruct his followers to make it go to war over this.  Why has the church made Its worst enemies of the whole queer community? Jesus care about social inequity and we have actually made this a social inequity issue.  Today Jesus would be allied with the queer community even if he didn’t accept the behavior. Jesus showed little direct  interest to what people do in bed.
+
+When you love yourself  giving advice is easy and taking advice is hard
+When you love someone else
+giving advice is hard and taking advice is easy
+When you don’t it’s the other way D
+
+	Date:	February 20, 2023 at 7:50:45 PM CST
+
+# Random thoughts
+If you cannot follow, you cannot lead
+
+We’re not beautiful because we’re “beautiful”
+Or our being beautiful has nothing to do with cultural conceptions of beauty.
+Each of us is 100% beautiful because we reflect the divine in our physical, mental and spiritual beings
+
+I am not ashamed of the gospel!
+
+Thank you lord for red lights there would be a lot of accidents without red lights
+Red lights are also an opportunity to be still in the midst of a busy day.  Rest into the moment and feel gratitude
+
+The first response Christian’s should have upon hearing of a child out of wedlock is to celebrate a new life.  The second response is
+to ask the parents how we can support them. Our response should not be to judge shun and gossip.
+
+The epidemic , especially in men, of sexual addiction, infidelity, pornography and abuse is a consequence of remembered and unremembered trauma that leads to painful emotional triggers.  We use the powerful pleasure experience of sex as a drug to numb our emotional pain.  The trap is that like drugs we’re habituate to that pleasure and need more and more until it becomes an addiction and our master.
+
+The gospel in short is that God loves us unconditionally and demonstrated it to us in the life and death of Jesus Christ.
+Many in the western world have never heard the good news that  God loves them unconditionally.  They may have “heard “these exact words, but they did not see it demonstrated by the messenger or by the Church.  Jesus never said the words but demonstrated in his life.  Let us preach the gospel in season and out of season and use words only if love requires it.
+
+2/25/23
+
+ I am not called to judge other people by my values, especially unbelievers (“Judgment begins with the house of God “).  If someone gives me permission to hold them accountable to *their* values and they align with mine then I will, but only if they have expressly given me permission.
+
+2/28/23
+Rules: do everything you promise to others or to yourself immediately or put it into your calendar immediately.  If it’s not something you “want to do” you will likely forget it otherwise.
+
+Being judgemental is not just thinking worse about someone else; it is also thinking better about yourself or someone else
+
+3/1/23
+Real life mind control is not about controlling other peoples thoughts it’s about controlling your own
+
+3/2/23
+Life is so much fun when your mentally and emotionally healthy!
+
+Realized in this season in order to be able to speak articulately I need to rehearse my words in my mind.  Is this true for everybody?
+
+3/3/23
+Every single human being does only what they must and only what they are able, [ 3/6/23 within the bounds of their trauma response, self concept and emotional and spiritual maturity level ]This knowledge is a great source of compassion for me.
+
+I will never motivate change in another person by hating them
+
+3/5/23
+Every piece of advice I’ve ever given to someone else was not for them but for me.
+
+At church
+When you are receiving a new blessing put down what you are holding
+
+3/7/23
+Everything I need for happiness is within me!
+
+I love being weird! It makes everybody’s day a little more surreal.
+
+When someone speeds recklessly through traffic, I always tell myself, “They’re having a baby!”
+
+When you ask forgiveness don’t give excuses it invalidates your request
+
+When you lose the fear of rejection you no longer take anything as rejection
+
+I don’t fully trust my memory but I will
+
+3/8/23
+I don’t buy anything for the brand.  Every purchase I make must speak for itself.
+
+The Devil deals in lies that are based on our fears.  When we abandon our fears, the devil can’t touch us.
+
+Never prepare for the worst it will only happen if you want it to
+
+Don’t be wierd to be noticed you may attract the wrong kind of attention
+
+When you meet someone’s eye a smile is enough greeting.  More than that is attracting attention to yourself
+
+Don’t act differently be your normal self just add love.
+
+If I trust my memory I will only remember what I’m supposed to remember and I’ll leave all the baggage behind!!!!
+
+Make inward change quickly and outward change slowly
+
+I just had the best day of my life and I didn’t tell anybody about it
+
+The best time to share important info with someone is when they can hear it, especially when their facing you, making eye contact and mirroring back you up wast you are saying.  Never speak to someone s back or when they R hungry out tired
+
+If the healing of an individual can be exponential or instantaneous so can the healing of the world.  We will see zero waste fulfilled in my lifetime
+
+3/9/23
+Answer to manyquestion is not black or white but gray, such as “it depends”, “maybe”, not now, tomorrow or I don’t know.  I’m coming to accept this ambiguity in life
+
+God is always certain but we are never guaranteed certainty
+
+In work, life, healing, relationships never bite of more than you can chew
+
+You can compromise your outward actions on but never compromise your values
+
+Don’t ask people questions that you already know the answer to it is disingenuous
+
+I show my EO don’t tell my change
+
+On the Mount of the lord it shall be provided
+God always provides us with what we need in the season we need it in
+
+I don’t avoid germs, but I do avoid chemicals
+
+3/11/33
+It’s not true that people only remember the negative.   If they love you unconditionally they only remember the positives and never the negatives
+
+3/12/23
+Rules I live by
+I always listen to my wife!!!!!!!!!!!
+
+Sometimes  miracles are things you just discover there been there all along and you finally just realized it
+
+1800help4me
+
+3/13/23
+Your mind is  a terrible thing to lose it’s an even worse thing to waste
+
+Our lives seem like a loose collections of stories.  Our stories sometimes interconnect with other stores but when we are wise we realized that there is only one big story that we are all part of and of which God is the author
+
+3/14/23
+In every conversation there’s a raging battle between the stories I desperately want to tell and the stories I desperately want to hear.  In the end it is the lord who decides if I speak out or if I listen
+
+3/15/23
+I want a front seat in heaven so I’ll take a back seat on earth
+
+2/9/23
+If I ally let myself get aroused by Dawn and only achieve an organ thinking about her son I will only be attracted to her not to any other man or woman
+
+Song to write
+ People take what they can stand purple give what they can give that’s the east o of man
+Purple Heart what they can hear
+People say what they don’t mean
+That’s the west of man
+People love when they can’t live p
+People hate when they can hate
+That’s the east of man
+
+3/2/23
+Realized I have forgiven everybody in my life.
+When you forgive you understand everyone else’s point of view
+
+3/6/23
+Miracles are happening at a faster pace.  Yesterday and today my wife who has a chronic pain condition has had excruciating back pain.  She runs a craft business online and recently
+
+Never try to force miracles you must trust good to choose what miracles you will experience.  Tonight I became very anxious that the timing of my meds would not happen perfectly at 6:30.  I had to ask for forgiveness and faith to trust God’s perfect timing.  I ate my plate of Korean food all day.   I discovered today that if I eat small portions every two hours I retain my focus but when I’m doing physical work I need to eat larger meals to sustain my energy output.  Listening to my body has been revolutionary.  Tonight I didn’t try to take my meds exactly at 6:30 but I managed to take them at 6:28.  It’s so tempting to expect past miracles to repeat themselves when God had new blessings for us every day. “His mercies are new every morning”
+
+3/8/23
+The lord engineers so much better miracles than we could ever think of!!!  Don’t test the Lord always do things naturally and let the lord surprise you!
+
+3/12/23
+When we’re young in our faith we presuppose miracles are t make our lives easier.  That could not be further from the truth.  Terry are meant to make our lives holler and reveal the fathers heart to those around us
+
+We remember only what we are meant to remember
+Don’t fill your mind with what ur body can remember and Vice vets
+
+My power will increase as my righteousness increases
+
+2/3/23
+The question is no longer what do other people want me to be and do but rather what does love require in this unique situation?
+
+The more you love yourself and others unconditionally the more you come to realize that you have been free at every step, and at the same time, everything was strategically planned by Providence from the very beginning.
+
+2/4/23
+I will praise no man because no man is better than another but I will always honor those who have gone before me in the journey of faith.
+
+In some ways the mind is greater than the body. For example when you set goals and teachyour body to achieve then. But in some ways the body is greater than the mind Dick as when you not a new cat and your muscle memory gets you all jumbled up or in the case of somatic trauma which every human has to some degree.  Our conscious memories are are much shorter than our body memories.
+
+3/11/23
+
+As I saw the package that said will you share this meal with me too and from I didn’t know who the two was and then realized it was sparrow my North Korean name means sparrow it’s from Mother the bad had hearts omit
+
+Our bite of the future and the past get clear over time as we heal
+
+Walk was exactly half hour slower going faster coming back
+I walked with my mother on the back on a cold winter day.  When I could no longer walk I was about 2 she carried me home.
+When I reached the end of my destination it Outreach community to thought I would go in and ask for something hot but it’s before 11 on a Saturday.  I did so a little free book library that I prayed if I should grab anything and when I would know I was done.  I looked through almost everything and I came back with 12 books and a wet doll stroller x which was probably the weight of e and I imagined my mother casting me home through the por ténsennos and my chest warmed up as if I were carrying a baby and I imagined my 2 year old body warming up against my mothers breast.
+
+I remember living in an apartment building for some reason my father blamed my mothers death or abandonment of him on me and he loved me and hated me at the same time.  In the tub he didn’t really want to hurt me but when I passed out and he thought he had killed EO dad his eyes full of terror he put me in a wet box and left me at the orphanage.  I started y walk about 10:30 and got back to my r about 11 it was about a mile walk this time I bundled up because my little d needed to feel warm.  I interrupted my child resistance and pain tolerance training to Mother my inner child.  My heart rate still feels up but not as bad before.  I will feel r when I take a nap with Mother.
+Fortunately I walked off the sleepy biscuit
+Loved the ocean loved walls on the ocean with mother king vista
+That’s why I dream of ocean and I submitted to the bath water I wanted the ocean to take me in my dreams the ocean depths are a sane place away from danger
+This time when I bank where my ear plugs
+
+3/12/23
+All of our bad behaviors starting with sticking our thumbs to hominids are self soothing behaviors asa response to trauma that instead of con fronting with compassion we confront with shame and judgment
+
+참새
+chamsae
+Korean name is Chamsae sparrow
+
+	Date:	March 2, 2023 at 6:25:46 AM CST
+
+# The evangelical church
+EC is falling prey to the devil’s third temptation: political power.
+This is the agenda that Jesus’s disciples and community had for him as well.  But to that Jesus said get behind me satan!
+Instead of loving the “worst” sinners unconditionally like Jesus did.
+
+stress and conflict, better able to handle negative emotion
+
+	Date:	March 4, 2023 at 6:50:05 AM CST
+
+# The bank
+3/4/23
+
+	Date:	March 5, 2023 at 3:14:05 AM CST
+
+New words concepts and phrases
+
+The fourth dimension (of flavor, design, kindness, etc)
+That little something extra that transforms the ordinary or earthly into something sublime or divine.
+Palindilap?
+
+3/7/23
+Found a piece of lettuce in the sink drainer. The chunk off the bottom of a romaine leaf that is red.  I picked it up and ate it.  It was delicious. I think that’s where a lot of the nutrition is.
+
+Try to come up with a new way to be sustainable everyday.  If we all do this, we will have a bright future indeed.
+Realized I could bring hand towels to work instead of using paper towels
+
+3/11/23
+Use less water cleaning dishes lock everything clean
+
+Only use soap and hot water for greasy spillage brush n or just rinse for water soluble or fry “dirty”
+Use a towel instead of Paper towel and until every part of it is dirty
+
+Fill reusable containers in fridge even if it’s different foods
+
+Zero waste within my lifetime
+
+Apple I’ll be second largest sustainable tech company first will be sparrow tech
+
+3/13/23
+Keep your physical space as organized as possible so you will t have to relucir something you lost “somewhere”
+
+In the future we will use biológica rather than detergents
+
+I have no judgment about has any one eats everyone eats exactly what he or she needs to
+Exactly what they need to survive emotionally and physically
+
+Tolerance is by exposure not by available
+
+3/14/23
+Take care of the body and you will take care of the mind
+
+Take time to listen and feel add ask your body everyday what it needs for health
+
+3/16/23
+
+Most available stair machine is the longest stairwell in a tall building
+
+3/17/23
+
+Mirroring in e communications is just as important as in real life maybe more so in all forms of communications
+
+Thomas Coyle
+The twin of gratitude is joy!!!!!3/18/23 linked in post to a post from Thomas about gratitude for a Christmas tree
+
+	Date:	March 7, 2023 at 3:58:22 PM CST
+
+# Sleep
+My sleep problem is somatic when I undergo healing of my body and subconscious I will no longer need sleep meds.  Dawn suggested hypnotism.  Wow!
+3/8/23
+Last week I discovered I could shut the snooze button permanently off my morning alarm.  I’ve never used it since I’ve had a cellphone but just in case I accidentally press it I shut it off.
+
+Try taking naps without earplugs to heal my somatic illness.  Take a nap every day after work.
+
+First thing that came to Curt’s mind is somatic
+Experiencing.  Not my area of expertise.  The body keeps the score
+
+“Somatic experiencing therapist in the Aurora area “
+Charlotte Dillon gateway
+Deals with spiritual issues too
+Give her a call
+
+I asked Curt with help with my phone.  And told him he’s really good with his phone.  He said Can you see the flesh growing over my phone
+
+	Date:	March 8, 2023 at 3:14:48 AM CST
+
+Clothing
+Got my olukai slippers Monday match 6.  I absolutely love them.  Need to give them feedback that they were perfect rounded up to the next full size.
+
+	Date:	March 8, 2023 at 3:26:34 AM CST
+
+Mental health
+Psychological health
+I have needed to e on meds for decades.  Perhaps if I had known what I know now I could have shortened that period but that is neither here nor there and that is not the path God had for me.  Perhaps it will shorten my life I don’t think so, but I am content either way for I have experienced enough joy in my short life for several lifetimes.
+
+	Date:	March 8, 2023 at 3:35:02 AM CST
+
+Volunteering and ministry
+I want to do esl again but I want to develop my own methods mixing singing and sign language
+
+	Date:	March 8, 2023 at 4:48:39 AM CST
+
+	Date:	March 9, 2023 at 4:37:29 AM CST
+
+Garden notes
+Leave alum up for the winter
+When they are up 2” in the spring and the weather is relatable warm you can easily pull out the old stems and you wan pull them out I’d the ground
+
+	Date:	March 9, 2023 at 5:04:36 AM CST
+
+	Date:	March 9, 2023 at 7:36:52 AM CST
+
+# Race and somatic trauma
+Epigenetics
+
+3/13/23
+Epigenetics caused whole traces of people to shrink or grow based on self conceptions and self fulfilled prophecy.   Eg ingid mex and kor chinjapmal
+
+	Date:	March 9, 2023 at 2:33:37 PM CST
+
+# Fairfield family dynamics
+I spoke to Katie last Sunday and had a wonderful mutually encouraging conversation.  When Dawn texted the family that I was doing outpatient, Katie told her that I seemed manic.  Dawn was upset that she didn’t say anything.  I’m tempted to ask Katie what it was in our conversation made her think that but I remembered know one can know the true extent of my change until my identity is revealed their eyes are closed the same way the disciples could not recognize Jesus his resurrection was so amazing they brains could not accept that he was alive again.  My family will not accept that I’ve changed This much a property is t active in god own home
+Dawn will be the first to accept me like May accepted Jesus
+My parents will be last
+
+3/12/23
+Dawn will be last
+
+Spoke with Jono this morning he is always available always listening always speaking wisdom.  He is an incredibly wise man.  I will code name him The Buddha
+Kate is The Best,  is The Great is The Preache The Monarch
+Ms Warrenville
+The mother Rucker
+The carpenter
+The weeper
+
+	Date:	March 9, 2023 at 5:03:16 PM CST
+
+# Prayer
+Help me to trust my memory
+Leslie’s healing
+Emmy’s
+Suplicios
+Larson’s bath
+
+	Date:	March 10, 2023 at 7:24:42 AM CST
+
+	Date:	March 10, 2023 at 7:24:56 AM CST
+
+# Prison
+I will pay a billion or more for rehabilitation programs plus the insurance required for me to be there.
+
+	Date:	March 11, 2023 at 7:24:18 AM CST
+
+# Growing faith
+I don’t have faith yet to some chemicals lead Avery’s distillates asbestos
+
+	Date:	March 11, 2023 at 7:41:04 AM CST
+
+The greatest skill a cleaner has is seeing!
